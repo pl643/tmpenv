@@ -95,7 +95,7 @@ function run_nvim
         tar xfz "$TMPENV/nvim-linux64.tar.gz" -C "$TMPENV"
         rm -f "$TMPENV/nvim-linux64.tar.gz"
         #echo DB: "$TMPENV/nvim-linux64/bin/nvim" -u "$TMPENV/vimrc" -c PlugInstall -c q -c :q
-        "$TMPENV/nvim-linux64/bin/nvim" -u "$TMPENV/vimrc" -c PlugInstall -c q -c :q
+        "$TMPENV/nvim-linux64/bin/nvim" -u "$DF/vimrc" -c PlugInstall -c q -c :q
     end
     if test \( -f "$DF/vimrc" -a -f "$TMPENV/nvim-linux64/bin/nvim" \)
         set -x NVIM_LISTEN_ADDRESS /tmp/nvimsocket  # for nvr command
