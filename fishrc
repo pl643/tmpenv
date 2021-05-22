@@ -70,7 +70,6 @@ function fish_right_prompt -d "Write out the right prompt"
 end
 
 if test -n TMUX
-    echo tmux source $DF/tmux.conf
     tmux source $DF/tmux.conf
     tmux source $DF/tmux.gruvbox
 end
@@ -90,19 +89,22 @@ end
 
 function run_nvim
 #set df "/tmp"
-    echo df: $DF
-    if not test -d "$DF/nvim-linux64"
-        wget -O "$DF/nvim-linux64.tar.gz" https://github.com/neovim/neovim/releases/download/nightly/nvim-linux64.tar.gz
-        tar xfz "$DF/nvim-linux64.tar.gz" -C "$DF"
-        rm -f "$DF/nvim-linux64.tar.gz"
-        "$DF/nvim-linux64/bin/nvim" -u "$DF/vimrc" -c PlugInstall -c q -c :q
+    #echo df: $DF
+    if not test -d "$TMPENV/nvim-linux64"
+        wget -O "$TMPENV/nvim-linux64.tar.gz" https://github.com/neovim/neovim/releases/download/nightly/nvim-linux64.tar.gz
+        tar xfz "$TMPENV/nvim-linux64.tar.gz" -C "$TMPENV"
+        rm -f "$TMPENV/nvim-linux64.tar.gz"
+        #echo DB: "$TMPENV/nvim-linux64/bin/nvim" -u "$TMPENV/vimrc" -c PlugInstall -c q -c :q
+        "$TMPENV/nvim-linux64/bin/nvim" -u "$TMPENV/vimrc" -c PlugInstall -c q -c :q
     end
-    if test \( -f "$DF/vimrc" -a -f "$DF/nvim-linux64/bin/nvim" \)
+    if test \( -f "$DF/vimrc" -a -f "$TMPENV/nvim-linux64/bin/nvim" \)
         set -x NVIM_LISTEN_ADDRESS /tmp/nvimsocket  # for nvr command
-        set -x EDITOR $DF/nvim-linux64/bin/nvim -u $DF/vimrc
-        set -x VISUAL $DF/nvim-linux64/bin/nvim -u $DF/vimrc
-        set -x PAGER  $DF/nvim-linux64/bin/nvim -u $DF/vimrc
+        set -x EDITOR $TMPENV/nvim-linux64/bin/nvim -u $DF/vimrc
+        set -x VISUAL $TMPENV/nvim-linux64/bin/nvim -u $DF/vimrc
+        set -x PAGER  $TMPENV/nvim-linux64/bin/nvim -u $DF/vimrc
         $EDITOR $argv
+        #echo $EDITOR $argv
+	#echo inside here:
     end
 end
 
