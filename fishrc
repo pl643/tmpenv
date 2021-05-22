@@ -1,6 +1,6 @@
 abbr B bash --rcfile "$DF"/bashrc -c \'\'
 abbr D docker
-abbr DF cd $DF
+abbr te cd $DF
 abbr G git
 abbr GA grep git $DF/fishrc
 abbr GC 'git config --global user.email "peter.wt.ly@gmail.com"; git config --global user.name "Peter Ly"'
