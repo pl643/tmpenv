@@ -1,0 +1,227 @@
+abbr B bash --rcfile "$DF"/bashrc -c \'\'
+abbr D docker
+abbr DF cd $DF
+abbr G git
+abbr GA grep git $DF/fishrc
+abbr GC 'git config --global user.email "peter.wt.ly@gmail.com"; git config --global user.name "Peter Ly"'
+abbr GH git stash
+abbr GL git log --oneline
+abbr GS git switch
+abbr Ga git add
+abbr Gb git branch
+abbr Gc "git commit -m ''"
+abbr Gcd 'git config --global core.pager "delta --line-numbers --dark"'
+abbr Gco git checkout
+abbr Gcp git "commit -m '' ; git push"
+abbr Gd git diff
+abbr Gh git push
+abbr Gi 'echo >> $DF/.gitignore'
+abbr Gl git pull
+abbr Gm git commit -m
+abbr Gs git status
+abbr Gsh git show
+abbr S sudo
+abbr T time
+abbr a alias
+abbr apt sudo apt
+abbr pi sudo apt -y install
+abbr b 'eval echo "Note: cd $OLDPWD; exa -lhF"; cd $OLDPWD'
+abbr c cd
+abbr dt delta
+abbr es 'echo $status'
+abbr f fd
+abbr ft tokei
+abbr g git
+abbr gsw  git switch
+abbr gsw- git switch -
+abbr gl "git log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)%Creset' --abbrev-commit" 
+abbr gr rg --color=always
+abbr grep rg --color=always
+abbr gco git checkout
+abbr gs git show
+abbr h history
+abbr l exa -lhF --color=always $argv \| less
+abbr ll exa -lhF --color=always $argv
+abbr le bat -p
+abbr pi sudo apt -y install
+abbr pu sudo apt update
+abbr r rg --color=always
+abbr rg rg --color=always
+abbr s exa --color=always $argv \| column \| less
+abbr ss exa --color=always
+abbr se showenv
+abbr sf source $DF/fishrc
+abbr t tmux
+abbr t1 tmux set -g window-style fg=colour247,bg=colour235
+abbr t2 tmux set -g window-style fg=colour247,bg=colour236
+abbr t3 tmux set -g window-style fg=colour247,bg=colour238
+abbr ts bash $DF/functions.bash tmux_sort_windows
+abbr ty type
+abbr u cd ..
+abbr v 'run_nvim'
+abbr vr /home/ply/.local/bin/nvr  
+abbr vri pip3 install neovim-remote
+
+fish_vi_key_bindings
+set fish_greeting
+
+function fish_right_prompt -d "Write out the right prompt"
+    date '+ %H:%M:%S'
+end
+
+if test -n TMUX
+    echo tmux source $DF/tmux.conf
+    tmux source $DF/tmux.conf
+    tmux source $DF/tmux.gruvbox
+end
+
+#if test -f $DF/fetch/fetch
+#    $DF/fetch/fetch
+#end
+
+function cd
+    set -xg OLDPWD $PWD
+    if count $argv > /dev/null
+        builtin cd "$argv"; and exa -lhF --color=always | bat -p
+    else
+        builtin cd ~; and exa -lhF --color=always | bat -p
+    end
+end
+
+function run_nvim
+#set df "/tmp"
+    echo df: $DF
+    if not test -d "$DF/nvim-linux64"
+        wget -O "$DF/nvim-linux64.tar.gz" https://github.com/neovim/neovim/releases/download/nightly/nvim-linux64.tar.gz
+        tar xfz "$DF/nvim-linux64.tar.gz" -C "$DF"
+        rm -f "$DF/nvim-linux64.tar.gz"
+        "$DF/nvim-linux64/bin/nvim" -u "$DF/vimrc" -c PlugInstall -c q -c :q
+    end
+    if test \( -f "$DF/vimrc" -a -f "$DF/nvim-linux64/bin/nvim" \)
+        set -x NVIM_LISTEN_ADDRESS /tmp/nvimsocket  # for nvr command
+        set -x EDITOR $DF/nvim-linux64/bin/nvim -u $DF/vimrc
+        set -x VISUAL $DF/nvim-linux64/bin/nvim -u $DF/vimrc
+        set -x PAGER  $DF/nvim-linux64/bin/nvim -u $DF/vimrc
+        $EDITOR $argv
+    end
+end
+
+function showenv
+    if test (count $argv) -gt 0
+        echo (tmux show-environment | grep $argv | cut -f2 -d=)
+    else
+        tmux show-environment
+    end
+end
+
+function fish_user_key_bindings
+  fish_vi_key_bindings
+  bind -M insert -m default jk backward-char force-repaint
+#bind -M insert -m default gap "commandline gap"
+end
+
+function Gap
+    clear
+    git diff
+    commandline "git commit -am '' ; git push"
+    commandline -C 16
+end
+
+### https://mariuszs.github.io/blog/2013/informative_git_prompt.html
+set -g __fish_git_prompt_show_informative_status 1
+set -g __fish_git_prompt_hide_untrackedfiles 1
+
+set -g __fish_git_prompt_color_branch magenta --bold
+set -g __fish_git_prompt_showupstream "informative"
+set -g __fish_git_prompt_char_upstream_ahead "↑"
+set -g __fish_git_prompt_char_upstream_behind "↓"
+set -g __fish_git_prompt_char_upstream_prefix ""
+
+set -g __fish_git_prompt_char_stagedstate "●"
+set -g __fish_git_prompt_char_dirtystate "✚"
+set -g __fish_git_prompt_char_untrackedfiles "…"
+set -g __fish_git_prompt_char_conflictedstate "✖"
+set -g __fish_git_prompt_char_cleanstate "✔"
+
+set -g __fish_git_prompt_color_dirtystate blue
+set -g __fish_git_prompt_color_stagedstate yellow
+set -g __fish_git_prompt_color_invalidstate red
+set -g __fish_git_prompt_color_untrackedfiles $fish_color_normal
+set -g __fish_git_prompt_color_cleanstate green --bold
+###
+
+# fish_mode_prompt replace with fish_mode_prompt2 witch is called from within
+#   fish_prompt 
+function fish_mode_prompt
+end
+
+function fish_mode_prompt2
+  switch $fish_bind_mode
+    case default
+      set_color --bold red
+      echo 'N'
+    case insert
+      set_color --bold green
+      echo ' '
+    case replace_one
+      set_color --bold green
+      echo 'r'
+    case replace
+      set_color --bold green
+      echo 'R'
+    case visual
+      set_color --bold brmagenta
+      echo 'V'
+    case '*'
+      set_color --bold red
+      echo '?'
+  end
+  set_color normal
+end
+
+#source "$DF/fish_git_prompt.fish"
+#source "$DF/functions/__fish_print_pipestatus.fish"
+#source "$DF/functions/prompt_login.fish"
+#source "$DF/functions/prompt_hostname.fish"
+#source "$DF/functions/prompt_pwd.fish"
+#source "$DF/functions/fish_vcs_prompt.fish"
+#source "$DF/functions/__fish_pipestatus_with_signal.fish"
+#source "$DF/functions/__fish_status_to_signal.fish"
+#source "$DF/functions/fish_hg_prompt.fish"
+#source "$DF/functions/fish_vi_key_bindings.fish"
+set -x HOSTNAME (hostname)
+set -x format "%s" # default is " %s"  # format for fish_git_prompt
+function fish_prompt --description 'Write out the prompt'
+    set -l last_pipestatus $pipestatus
+    set -lx __fish_last_status $status # Export for __fish_print_pipestatus.
+    set -l normal (set_color normal)
+
+    # Color the prompt differently when we're root
+    set -l color_cwd $fish_color_cwd
+    set -l suffix '>'
+    if functions -q fish_is_root_user; and fish_is_root_user
+        if set -q fish_color_cwd_root
+            set color_cwd $fish_color_cwd_root
+        end
+        set suffix '#'
+    end
+
+    # Write pipestatus
+    # If the status was carried over (e.g. after `set`), don't bold it.
+    set -l bold_flag --bold
+    set -q __fish_prompt_status_generation; or set -g __fish_prompt_status_generation $status_generation
+    if test $__fish_prompt_status_generation = $status_generation
+        set bold_flag
+    end
+    set __fish_prompt_status_generation $status_generation
+    set -l status_color (set_color $fish_color_status)
+    set -l statusb_color (set_color $bold_flag $fish_color_status)
+    set -l prompt_status (__fish_print_pipestatus "[" "]" "|" "$status_color" "$statusb_color" $last_pipestatus)
+
+    echo -n -s (prompt_login)' ' (set_color $color_cwd) (prompt_pwd) $normal (fish_vcs_prompt) $normal " "$prompt_status $suffix " "
+
+end
+set -x LS_COLORS $LS_COLORS:'di=0;36'  # make more dir more readable
+set -x EXA_COLORS "uu=38;5;249:un=38;5;241:gu=38;5;245:gn=38;5;241:da=38;5;245:sn=38;5;7:sb=38;5;7:ur=38;5;3;1:uw=38;5;5;1:ux=38;5;1;1:ue=38;5;1;1:gr=38;5;249:gw=38;5;249:gx=38;5;249:tr=38;5;249:tw=38;5;249:tx=38;5;249:fi=38;5;248:di=38;5;253:ex=38;5;1:xa=38;5;12:*.png=38;5;4:*.jpg=38;5;4:*.gif=38;5;4"
+
+printf "Note: last line of $DF/fishrc\n"
