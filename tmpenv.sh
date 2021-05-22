@@ -29,7 +29,7 @@ if grep -q 20.04    /etc/os-release; then
 		fi
 	fi
 	if [ ! -d $DF ] ; then
-		git clone https://pl643:Kao95843@github.com/pl643/DF
+		git clone https://pl643:Kao95843@github.com/pl643/tmpenv
 	fi
 	tmux -f $DF/tmux.conf -2 new fish -C "source $DF/fishrc"
 fi
