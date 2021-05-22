@@ -24,7 +24,6 @@ abbr S sudo
 abbr T time
 abbr a alias
 abbr apt sudo apt
-abbr pi sudo apt -y install
 abbr b 'eval echo "Note: cd $OLDPWD; exa -lhF"; cd $OLDPWD'
 abbr c cd
 abbr dt delta
@@ -32,25 +31,26 @@ abbr es 'echo $status'
 abbr f fd
 abbr ft tokei
 abbr g git
-abbr gsw  git switch
-abbr gsw- git switch -
+abbr gco git checkout
 abbr gl "git log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)%Creset' --abbrev-commit" 
 abbr gr rg --color=always
 abbr grep rg --color=always
-abbr gco git checkout
 abbr gs git show
+abbr gsw  git switch
+abbr gsw- git switch -
 abbr h history
 abbr l exa -lhF --color=always $argv \| less
-abbr ll exa -lhF --color=always $argv
 abbr le bat -p
+abbr ll exa -lhF --color=always $argv
+abbr pi sudo apt -y install
 abbr pi sudo apt -y install
 abbr pu sudo apt update
 abbr r rg --color=always
 abbr rg rg --color=always
 abbr s exa --color=always $argv \| column \| less
-abbr ss exa --color=always
 abbr se showenv
 abbr sf source $DF/fishrc
+abbr ss exa --color=always
 abbr t tmux
 abbr t1 tmux set -g window-style fg=colour247,bg=colour235
 abbr t2 tmux set -g window-style fg=colour247,bg=colour236
