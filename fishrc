@@ -150,12 +150,11 @@ set -g __fish_git_prompt_color_stagedstate yellow
 set -g __fish_git_prompt_color_invalidstate red
 set -g __fish_git_prompt_color_untrackedfiles $fish_color_normal
 set -g __fish_git_prompt_color_cleanstate green --bold
-###
 
-# fish_mode_prompt replace with fish_mode_prompt2 witch is called from within
-#   fish_prompt 
-function fish_mode_prompt
-end
+## fish_mode_prompt replace with fish_mode_prompt2 witch is called from within
+##   fish_prompt 
+#function fish_mode_prompt
+#end
 
 function fish_mode_prompt2
   switch $fish_bind_mode
@@ -181,16 +180,6 @@ function fish_mode_prompt2
   set_color normal
 end
 
-#source "$DF/fish_git_prompt.fish"
-#source "$DF/functions/__fish_print_pipestatus.fish"
-#source "$DF/functions/prompt_login.fish"
-#source "$DF/functions/prompt_hostname.fish"
-#source "$DF/functions/prompt_pwd.fish"
-#source "$DF/functions/fish_vcs_prompt.fish"
-#source "$DF/functions/__fish_pipestatus_with_signal.fish"
-#source "$DF/functions/__fish_status_to_signal.fish"
-#source "$DF/functions/fish_hg_prompt.fish"
-#source "$DF/functions/fish_vi_key_bindings.fish"
 set -x HOSTNAME (hostname)
 set -x format "%s" # default is " %s"  # format for fish_git_prompt
 function fish_prompt --description 'Write out the prompt'
