@@ -74,10 +74,6 @@ if test -n TMUX
     tmux source $DF/tmux.gruvbox
 end
 
-#if test -f $DF/fetch/fetch
-#    $DF/fetch/fetch
-#end
-
 function cd
     set -xg OLDPWD $PWD
     if count $argv > /dev/null
