@@ -108,8 +108,7 @@ end
 
 function tmux_setup_nvim
     echo tmux -f $DF/tmux.conf -2 new -s setup_nvim -d 'fish $DF/fishrc setup_nvim' 
-    tmux -f $DF/tmux.conf -2 new -s setup_nvim -d 'fish $DF/fishrc setup_nvim' 
-    #tmux attach -t setup_nvim
+    tmux -f $DF/tmux.conf new -s setup_nvim -d 'fish $DF/fishrc setup_nvim' 
 end
 
 function run_nvim
