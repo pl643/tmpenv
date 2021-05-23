@@ -1,13 +1,13 @@
 # configure a portable tmux/fish environment without installing packages
 
 set -e
-
+alias ta="tmux -2 attach"
 export ARCH=$(uname -m)
 export TMPENV="/tmp/.$(whoami)"
 export DF=$TMPENV/tmpenv
 export PATH=$TMPENV/bin:$PATH
 
-[ -x $TMPENV/bin/tmux ] && tmux -2 attach && exit
+[ -x $TMPENV/bin/tmux ] && tmux -2 attach > /dev/null && exit
 
 [ ! -d $TMPENV ] && mkdir $TMPENV
 cd $TMPENV
