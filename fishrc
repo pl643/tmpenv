@@ -87,9 +87,32 @@ function cd
     end
 end
 
+# Install nvim in tmux
+function setup_nvim
+    set -xg TMPENV /tmp/t 
+    if not test -d "$TMPENV"
+        echo mkdir $TMPENV
+        mkdir $TMPENV
+    else
+        echo $TMPENV exists
+    end
+    if not test -d "$TMPENV/nvim-linux64"
+        wget -O "$TMPENV/nvim-linux64.tar.gz" https://github.com/neovim/neovim/releases/download/nightly/nvim-linux64.tar.gz
+        tar xfz "$TMPENV/nvim-linux64.tar.gz" -C "$TMPENV"
+        rm -f "$TMPENV/nvim-linux64.tar.gz"
+        "$TMPENV/nvim-linux64/bin/nvim" -u "$DF/vimrc" -c PlugInstall -c q -c :q
+    else
+        echo "$TMPENV/nvim-linux64/bin/nvim"
+    end
+end
+
+function tmux_setup_nvim
+    # echo tmux -f $DF/tmux.conf -2 new -s sayhi -d 'fish $DF/fishrc setup_nvim' 
+    tmux -f $DF/tmux.conf -2 new -s setup_nvim -d 'fish $DF/fishrc setup_nvim' 
+    tmux attach -t setup_nvim
+end
+
 function run_nvim
-#set df "/tmp"
-    #echo df: $DF
     if not test -d "$TMPENV/nvim-linux64"
         wget -O "$TMPENV/nvim-linux64.tar.gz" https://github.com/neovim/neovim/releases/download/nightly/nvim-linux64.tar.gz
         tar xfz "$TMPENV/nvim-linux64.tar.gz" -C "$TMPENV"
@@ -215,4 +238,9 @@ end
 set -x LS_COLORS $LS_COLORS:'di=0;36'  # make more dir more readable
 set -x EXA_COLORS "uu=38;5;249:un=38;5;241:gu=38;5;245:gn=38;5;241:da=38;5;245:sn=38;5;7:sb=38;5;7:ur=38;5;3;1:uw=38;5;5;1:ux=38;5;1;1:ue=38;5;1;1:gr=38;5;249:gw=38;5;249:gx=38;5;249:tr=38;5;249:tw=38;5;249:tx=38;5;249:fi=38;5;248:di=38;5;253:ex=38;5;1:xa=38;5;12:*.png=38;5;4:*.jpg=38;5;4:*.gif=38;5;4"
 
-printf "Note: last line of $DF/fishrc\n"
+# Allows to run function if function name is passed as argument
+if test -n "$argv"
+    $argv
+else
+    printf "Note: last line of $DF/fishrc\n"
+end
