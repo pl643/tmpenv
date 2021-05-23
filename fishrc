@@ -89,7 +89,7 @@ end
 
 # Install nvim in tmux
 function setup_nvim
-    set -xg TMPENV /tmp/t 
+    #set -xg TMPENV /tmp/t 
     if not test -d "$TMPENV"
         echo mkdir $TMPENV
         mkdir $TMPENV
@@ -107,9 +107,9 @@ function setup_nvim
 end
 
 function tmux_setup_nvim
-    # echo tmux -f $DF/tmux.conf -2 new -s sayhi -d 'fish $DF/fishrc setup_nvim' 
+    echo tmux -f $DF/tmux.conf -2 new -s setup_nvim -d 'fish $DF/fishrc setup_nvim' 
     tmux -f $DF/tmux.conf -2 new -s setup_nvim -d 'fish $DF/fishrc setup_nvim' 
-    tmux attach -t setup_nvim
+    #tmux attach -t setup_nvim
 end
 
 function run_nvim
