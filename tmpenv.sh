@@ -31,6 +31,5 @@ if grep -q 20.04    /etc/os-release; then
 	if [ ! -d $DF ] ; then
 		git clone https://pl643:Kao95843@github.com/pl643/tmpenv
 	fi
-    tmux -f $DF/tmux.conf -2 new -s setup_nvim -d 'fish $DF/fishrc tmux_setup_nvim' 
 	tmux -f $DF/tmux.conf -2 new fish -C "source $DF/fishrc"
 fi
