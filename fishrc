@@ -84,7 +84,7 @@ function cd
 end
 
 # Install nvim in tmux
-function setup_nvim
+function setup_bin
     #set -xg TMPENV /tmp/t 
     if not test -d "$TMPENV"
         echo mkdir $TMPENV
@@ -100,11 +100,15 @@ function setup_nvim
     else
         echo "$TMPENV/nvim-linux64/bin/nvim"
     end
+    if not test -d "$TMPENV/rust-bin"
+        cd $TMPENV
+        git clone /rust-bin https://github.com/pl643/rust-bin
+    end
 end
 
-function tmux_setup_nvim
-    echo tmux -f $DF/tmux.conf -2 new -s setup_nvim -d 'fish $DF/fishrc setup_nvim' 
-    tmux -f $DF/tmux.conf new -s setup_nvim -d 'fish $DF/fishrc setup_nvim' 
+function tmux_setup_bin
+    echo tmux -f $DF/tmux.conf -2 new -s setup_bin -d 'fish $DF/fishrc setup_bin' 
+    tmux -f $DF/tmux.conf new -s setup_bin -d 'fish $DF/fishrc setup_bin' 
 end
 
 function run_nvim
@@ -232,9 +236,10 @@ end
 
 set -x LS_COLORS $LS_COLORS:'di=0;36'  # make more dir more readable
 set -x EXA_COLORS "uu=38;5;249:un=38;5;241:gu=38;5;245:gn=38;5;241:da=38;5;245:sn=38;5;7:sb=38;5;7:ur=38;5;3;1:uw=38;5;5;1:ux=38;5;1;1:ue=38;5;1;1:gr=38;5;249:gw=38;5;249:gx=38;5;249:tr=38;5;249:tw=38;5;249:tx=38;5;249:fi=38;5;248:di=38;5;253:ex=38;5;1:xa=38;5;12:*.png=38;5;4:*.jpg=38;5;4:*.gif=38;5;4"
+set -x PATH $TMPENV/rust-bin $PATH
 
 if not test -d "$TMPENV/nvim-linux64"
-   tmux_setup_nvim
+   tmux_setup_bin
 end
 
 # Allows to run function if function name is passed as argument
