@@ -39,7 +39,7 @@ abbr gs git show
 abbr gsw  git switch
 abbr gsw- git switch -
 abbr h history
-abbr l exa -lhF --color=always $argv \| less
+abbr l exa -lhF --color=always $argv \| less -FXRM
 abbr le bat -p
 abbr ll exa -lhF --color=always $argv
 abbr pi sudo apt -y install
@@ -47,7 +47,7 @@ abbr pi sudo apt -y install
 abbr pu sudo apt update
 abbr r rg --color=always
 abbr rg rg --color=always
-abbr s exa --color=always $argv \| column \| less
+abbr s exa --color=always $argv \| column \| less -FXRM
 abbr se showenv
 abbr sf source $DF/fishrc
 abbr ss exa --color=always
