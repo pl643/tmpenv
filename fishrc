@@ -102,7 +102,7 @@ function setup_bin
     end
     if not test -d "$TMPENV/rust-bin"
         cd $TMPENV
-        git clone /rust-bin https://github.com/pl643/rust-bin
+        git clone https://github.com/pl643/rust-bin
     end
 end
 
