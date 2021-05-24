@@ -102,7 +102,7 @@ function setup_bin
 end
 
 function tmux_setup_bin
-    echo tmux -f $DF/tmux.conf -2 new -s setup_bin -d 'fish $DF/fishrc setup_bin' 
+    # echo tmux -f $DF/tmux.conf -2 new -s setup_bin -d 'fish $DF/fishrc setup_bin' 
     tmux -f $DF/tmux.conf new -s setup_bin -d 'fish $DF/fishrc setup_bin' 
 end
 
@@ -231,12 +231,12 @@ end
 
 set -x LS_COLORS $LS_COLORS:'di=0;36'  # make more dir more readable
 set -x EXA_COLORS "uu=38;5;249:un=38;5;241:gu=38;5;245:gn=38;5;241:da=38;5;245:sn=38;5;7:sb=38;5;7:ur=38;5;3;1:uw=38;5;5;1:ux=38;5;1;1:ue=38;5;1;1:gr=38;5;249:gw=38;5;249:gx=38;5;249:tr=38;5;249:tw=38;5;249:tx=38;5;249:fi=38;5;248:di=38;5;253:ex=38;5;1:xa=38;5;12:*.png=38;5;4:*.jpg=38;5;4:*.gif=38;5;4"
-set -x TMPENV /tmp/.(whoami)
-set -x DF /tmp/.(whoami)/tmpenv
-set -x PATH $TMPENV/rust-bin $TMPENV/bin $PATH
+# set -x TMPENV /tmp/.(whoami)
+# set -x DF /tmp/.(whoami)/tmpenv
+# set -x PATH $TMPENV/rust-bin $TMPENV/bin $PATH
 
 if test -n TMUX
-    echo tmux source $DF/tmux.conf
+    # echo tmux source $DF/tmux.conf
     tmux source $DF/tmux.conf
     tmux source $DF/tmux.gruvbox
 end
