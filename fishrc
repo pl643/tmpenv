@@ -40,14 +40,14 @@ abbr gsw  git switch
 abbr gsw- git switch -
 abbr h history
 abbr l exa -lhF --color=always $argv \| less -FXRM
-abbr le bat -p
+abbr le less
 abbr ll exa -lhF --color=always $argv
 abbr pi sudo apt -y install
 abbr pi sudo apt -y install
 abbr pu sudo apt update
 abbr r rg --color=always
 abbr rg rg --color=always
-abbr s exa --color=always $argv \| column \| less -FXRM
+abbr s exa --color=always $argv \| column
 abbr se showenv
 abbr sf source $DF/fishrc
 abbr ss exa --color=always
@@ -236,6 +236,12 @@ set -x EXA_COLORS "uu=38;5;249:un=38;5;241:gu=38;5;245:gn=38;5;241:da=38;5;245:s
 set -x PATH $TMPENV/rust-bin $PATH
 
 source $DF/scripts/br.fish
+if test -f "$TMPENV/fzf.fish/conf.d/fzf.fish"
+    set fzf_preview_file_cmd bat
+    source $TMPENV/fzf.fish/conf.d/fzf.fish
+    # source $TMPENV/fzf.fish/functions/__fzf_preview_file.fish
+    source $TMPENV/fzf.fish/functions/__fzf_search_current_dir.fish
+end
 
 if test -n TMUX
     # echo tmux source $DF/tmux.conf
