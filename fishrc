@@ -11,7 +11,7 @@ abbr Gc "git commit -m ''"
 abbr Gcd 'git config --global core.pager "delta --line-numbers --dark"'
 abbr Gco git checkout
 abbr Gcp git "commit -m '' ; git push"
-abbr Gd git diff
+abbr gd clear \; git diff
 abbr Gh git push
 abbr Gi 'echo >> $DF/.gitignore'
 abbr Gl git pull
@@ -34,19 +34,19 @@ abbr gco git checkout
 abbr gl "git log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)%Creset' --abbrev-commit" 
 abbr gr rg --color=always
 abbr grep rg --color=always
-abbr gs git show
+abbr gs clear \; git show
 abbr gsw  git switch
 abbr gsw- git switch -
 abbr h history
 abbr l exa -lhF --color=always $argv \| less -FXRM
-abbr le bat -p
+abbr le less
 abbr ll exa -lhF --color=always $argv
 abbr pi sudo apt -y install
 abbr pi sudo apt -y install
 abbr pu sudo apt update
 abbr r rg --color=always
 abbr rg rg --color=always
-abbr s exa --color=always $argv \| column \| less -FXRM
+abbr s exa --color=always $argv \| column
 abbr se showenv
 abbr sf source $DF/fishrc
 abbr ss exa --color=always
@@ -67,11 +67,6 @@ set fish_greeting
 
 function fish_right_prompt -d "Write out the right prompt"
     date '+ %H:%M:%S'
-end
-
-if test -n TMUX
-    tmux source $DF/tmux.conf
-    tmux source $DF/tmux.gruvbox
 end
 
 function cd
@@ -102,12 +97,12 @@ function setup_bin
     end
     if not test -d "$TMPENV/rust-bin"
         cd $TMPENV
-        git clone /rust-bin https://github.com/pl643/rust-bin
+        git clone https://github.com/pl643/rust-bin
     end
 end
 
 function tmux_setup_bin
-    echo tmux -f $DF/tmux.conf -2 new -s setup_bin -d 'fish $DF/fishrc setup_bin' 
+    # echo tmux -f $DF/tmux.conf -2 new -s setup_bin -d 'fish $DF/fishrc setup_bin' 
     tmux -f $DF/tmux.conf new -s setup_bin -d 'fish $DF/fishrc setup_bin' 
 end
 
@@ -144,7 +139,7 @@ function fish_user_key_bindings
 #bind -M insert -m default gap "commandline gap"
 end
 
-function Gap
+function gap
     clear
     git diff
     commandline "git commit -am '' ; git push"
@@ -236,7 +231,23 @@ end
 
 set -x LS_COLORS $LS_COLORS:'di=0;36'  # make more dir more readable
 set -x EXA_COLORS "uu=38;5;249:un=38;5;241:gu=38;5;245:gn=38;5;241:da=38;5;245:sn=38;5;7:sb=38;5;7:ur=38;5;3;1:uw=38;5;5;1:ux=38;5;1;1:ue=38;5;1;1:gr=38;5;249:gw=38;5;249:gx=38;5;249:tr=38;5;249:tw=38;5;249:tx=38;5;249:fi=38;5;248:di=38;5;253:ex=38;5;1:xa=38;5;12:*.png=38;5;4:*.jpg=38;5;4:*.gif=38;5;4"
+# set -x TMPENV /tmp/.(whoami)
+# set -x DF /tmp/.(whoami)/tmpenv
 set -x PATH $TMPENV/rust-bin $PATH
+
+source $DF/scripts/br.fish
+if test -f "$TMPENV/fzf.fish/conf.d/fzf.fish"
+    set fzf_preview_file_cmd bat
+    source $TMPENV/fzf.fish/conf.d/fzf.fish
+    # source $TMPENV/fzf.fish/functions/__fzf_preview_file.fish
+    source $TMPENV/fzf.fish/functions/__fzf_search_current_dir.fish
+end
+
+if test -n TMUX
+    # echo tmux source $DF/tmux.conf
+    tmux source $DF/tmux.conf
+    tmux source $DF/tmux.gruvbox
+end
 
 if not test -d "$TMPENV/nvim-linux64"
    tmux_setup_bin
