@@ -235,7 +235,7 @@ set -x EXA_COLORS "uu=38;5;249:un=38;5;241:gu=38;5;245:gn=38;5;241:da=38;5;245:s
 # set -x DF /tmp/.(whoami)/tmpenv
 set -x PATH $TMPENV/rust-bin $PATH
 
-source $TMPENV/scripts/br.fish
+source $DF/scripts/br.fish
 
 if test -n TMUX
     # echo tmux source $DF/tmux.conf
