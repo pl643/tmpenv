@@ -74,7 +74,7 @@ fi
 
 if grep -q 20.04    /etc/os-release; then
 	echo Ubuntu 2004 $ARCH detected
-    OS="u20"
+    export OS="u20"
 	BINPATH=$TMPENV/bin-ubuntu2004-$ARCH/usr/local/bin
 	if [ ! -d $BINPATH ] ; then
 		echo git clone https://github.com/pl643/bin-ubuntu2004-$ARCH
