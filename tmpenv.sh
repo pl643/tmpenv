@@ -19,6 +19,7 @@ cd $TMPENV
 
 if grep -q CentOS-7 /etc/os-release; then
 	echo Centos-7 $ARCH detected
+    OS="c7"
 	DISTRO="bin-centos7-$ARCH"
 	BINPATH=$TMPENV/$DISTRO/usr/local/bin
 	if [ ! -d $BINPATH ] ; then
@@ -73,6 +74,7 @@ fi
 
 if grep -q 20.04    /etc/os-release; then
 	echo Ubuntu 2004 $ARCH detected
+    OS="u20"
 	BINPATH=$TMPENV/bin-ubuntu2004-$ARCH/usr/local/bin
 	if [ ! -d $BINPATH ] ; then
 		echo git clone https://github.com/pl643/bin-ubuntu2004-$ARCH
