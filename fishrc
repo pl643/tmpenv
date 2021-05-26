@@ -80,6 +80,16 @@ function cd
     end
 end
 
+function download_configure_nightly_nvim
+    if not test -d "$TMPENV/nvim-linux64"
+        cd "$TMPENV"
+        curl -sL https://github.com/neovim/neovim/releases/download/nightly/nvim-linux64.tar.gz | tar xfz -
+        "$TMPENV/nvim-linux64/bin/nvim" -u "$DF/vimrc" -c PlugInstall -c q -c :q
+    else
+        echo "$TMPENV/nvim-linux64/bin/nvim" exists
+    end
+end
+
 # Install nvim in tmux
 function setup_bin
     #set -xg TMPENV /tmp/t 
@@ -89,14 +99,7 @@ function setup_bin
     else
         echo $TMPENV exists
     end
-    if not test -d "$TMPENV/nvim-linux64"
-        wget -O "$TMPENV/nvim-linux64.tar.gz" https://github.com/neovim/neovim/releases/download/nightly/nvim-linux64.tar.gz
-        tar xfz "$TMPENV/nvim-linux64.tar.gz" -C "$TMPENV"
-        rm -f "$TMPENV/nvim-linux64.tar.gz"
-        "$TMPENV/nvim-linux64/bin/nvim" -u "$DF/vimrc" -c PlugInstall -c q -c :q
-    else
-        echo "$TMPENV/nvim-linux64/bin/nvim"
-    end
+    download_configure_nightly_nvim
     if not test -d "$TMPENV/rust-bin"
         cd $TMPENV
         git clone https://github.com/pl643/rust-bin
@@ -113,13 +116,7 @@ function tmux_setup_bin
 end
 
 function run_nvim
-    if not test -d "$TMPENV/nvim-linux64"
-        wget -O "$TMPENV/nvim-linux64.tar.gz" https://github.com/neovim/neovim/releases/download/nightly/nvim-linux64.tar.gz
-        tar xfz "$TMPENV/nvim-linux64.tar.gz" -C "$TMPENV"
-        rm -f "$TMPENV/nvim-linux64.tar.gz"
-        #echo DB: "$TMPENV/nvim-linux64/bin/nvim" -u "$TMPENV/vimrc" -c PlugInstall -c q -c :q
-        "$TMPENV/nvim-linux64/bin/nvim" -u "$DF/vimrc" -c PlugInstall -c q -c :q
-    end
+    download_configure_nightly_nvim
     if test \( -f "$DF/vimrc" -a -f "$TMPENV/nvim-linux64/bin/nvim" \)
         set -x NVIM_LISTEN_ADDRESS /tmp/nvimsocket  # for nvr command
         set -x EDITOR $TMPENV/nvim-linux64/bin/nvim -u $DF/vimrc
