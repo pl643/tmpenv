@@ -19,7 +19,7 @@ cd $TMPENV
 
 if grep -q CentOS-7 /etc/os-release; then
 	echo Centos-7 $ARCH detected
-    OS="c7"
+    export OS="c7"
 	DISTRO="bin-centos7-$ARCH"
 	BINPATH=$TMPENV/$DISTRO/usr/local/bin
 	if [ ! -d $BINPATH ] ; then
