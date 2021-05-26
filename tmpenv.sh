@@ -21,7 +21,7 @@ cd $TMPENV
 
 if grep -q CentOS-7 /etc/os-release; then
 	echo Centos-7 $ARCH detected
-    export OS="c7"
+	export OS="c7"
 	DISTRO="bin-centos7-$ARCH"
 	BINPATH=$TMPENV/$DISTRO/usr/local/bin
 	if [ ! -d $BINPATH ] ; then
@@ -39,7 +39,7 @@ fi
 
 if grep -q CentOS-8 /etc/os-release; then
 	echo Centos-8 $ARCH detected
-    export OS="c8"
+	export OS="c8"
 	DISTRO="bin-centos8-$ARCH"
 	BINPATH=$TMPENV/$DISTRO/usr/local/bin
 	if [ ! -d $BINPATH ] ; then
@@ -57,7 +57,7 @@ fi
 
 if grep -q 16.04    /etc/os-release; then
 	echo Ubuntu 1604 $ARCH detected
-    export OS="u16"
+	export OS="u16"
 	BINPATH=$TMPENV/bin-ubuntu1604-$ARCH/usr/local/bin
 	if [ ! -d $BINPATH ] ; then
 		echo git clone https://github.com/pl643/bin-ubuntu2004-$ARCH
@@ -74,7 +74,7 @@ fi
 
 if grep -q 18.04    /etc/os-release; then
 	echo Ubuntu 18.04 $ARCH detected
-    export OS="u18"
+	export OS="u18"
 	BINPATH=$TMPENV/bin-ubuntu1804-$ARCH/usr/local/bin
 	if [ ! -d $BINPATH ] ; then
 		echo git clone https://github.com/pl643/bin-ubuntu2004-$ARCH
@@ -91,7 +91,7 @@ fi
 
 if grep -q 20.04    /etc/os-release; then
 	echo Ubuntu 20.04 $ARCH detected
-    export OS="u20"
+	export OS="u20"
 	BINPATH=$TMPENV/bin-ubuntu2004-$ARCH/usr/local/bin
 	if [ ! -d $BINPATH ] ; then
 		echo git clone https://github.com/pl643/bin-ubuntu2004-$ARCH
