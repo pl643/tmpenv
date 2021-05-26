@@ -40,6 +40,7 @@ abbr gsw  git switch
 abbr gsw- git switch -
 abbr h history
 abbr l exa -lhF --color=always $argv \| less -FXRM
+abbr latz sudo ln -sf /usr/share/zoneinfo/America/Los_Angeles /etc/localtime
 abbr le less
 abbr ll exa -lhF --color=always $argv
 abbr pi sudo apt -y install
