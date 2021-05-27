@@ -10,6 +10,7 @@ export ARCH=$(uname -m)
 export TMPENV="/tmp/.$(whoami)"
 export DF=$TMPENV/tmpenv
 export PATH=$TMPENV/bin:$PATH
+export LD_LIBRARY_PATH="$TMPENV/bin"
 
 [ -x $TMPENV/bin/tmux ] && tmux -2 attach > /dev/null && exit
 
@@ -21,10 +22,10 @@ cd $TMPENV
 #tmux -f $DF/tmux.conf -2 new fish -C "source $DF/fishrc"
 #exit
 
-if grep -q v3 /etc/os-release; then
+if grep -q 3.14 /etc/os-release; then
 	echo Alpine Linux 3 $ARCH found
 	export OS="a3"
-	DISTRO="bin-alpine3-$ARCH"
+	DISTRO="bin-alpine-$ARCH"
 	BINPATH=$TMPENV/$DISTRO/usr/local/bin
 	if [ ! -d $BINPATH ] ; then
 		echo git clone https://github.com/pl643/$DISTRO
