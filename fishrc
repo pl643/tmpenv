@@ -9,11 +9,11 @@ abbr GL git log --oneline
 abbr GS git switch
 abbr Gb git branch
 abbr Gc "git commit -m ''"
-abbr Gcu "git commit -m ''; git push --force"
 abbr Gca git commit --amend -m \"\"
 abbr Gcd 'git config --global core.pager "delta --line-numbers --dark"'
 abbr Gco git checkout
 abbr Gcp git "commit -m '' ; git push"
+abbr Gcu "git commit -m ''; git push --force"
 abbr Gh git push
 abbr Ghf git push --force
 abbr Gi 'echo >> $DF/.gitignore'
