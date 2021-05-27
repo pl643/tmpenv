@@ -9,6 +9,7 @@ abbr GL git log --oneline
 abbr GS git switch
 abbr Gb git branch
 abbr Gc "git commit -m ''"
+abbr Gca git commit --amend -m \"\"
 abbr Gcd 'git config --global core.pager "delta --line-numbers --dark"'
 abbr Gco git checkout
 abbr Gcp git "commit -m '' ; git push"
