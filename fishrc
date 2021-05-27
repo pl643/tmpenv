@@ -68,6 +68,8 @@ abbr u cd ..
 abbr v 'run_nvim'
 abbr vr /home/ply/.local/bin/nvr  
 abbr vri pip3 install neovim-remote
+abbr tsb tmux set-option -g status-position bottom
+abbr tst tmux set-option -g status-position top
 
 fish_vi_key_bindings
 set fish_greeting
