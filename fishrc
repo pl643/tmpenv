@@ -13,7 +13,6 @@ abbr Gca git commit --amend -m \"\"
 abbr Gcd 'git config --global core.pager "delta --line-numbers --dark"'
 abbr Gco git checkout
 abbr Gcp git "commit -m '' ; git push"
-abbr gd clear \; git diff
 abbr Gh git push
 abbr Gi 'echo >> $DF/.gitignore'
 abbr Gl git pull
@@ -32,8 +31,9 @@ abbr f fd
 abbr ft tokei
 abbr g git
 abbr ga git add
-abbr gco git checkout
 abbr gc git clone
+abbr gco git checkout
+abbr gd clear \; git diff
 abbr gl "git log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)%Creset' --abbrev-commit" 
 abbr gr rg --color=always
 abbr grep rg --color=always
