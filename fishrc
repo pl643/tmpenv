@@ -14,6 +14,7 @@ abbr Gcd 'git config --global core.pager "delta --line-numbers --dark"'
 abbr Gco git checkout
 abbr Gcp git "commit -m '' ; git push"
 abbr Gh git push
+abbr Ghf git push --force
 abbr Gi 'echo >> $DF/.gitignore'
 abbr Gl git pull
 abbr Gm git commit -m
