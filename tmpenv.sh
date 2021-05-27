@@ -7,9 +7,9 @@ set -e
 alias ta="tmux -2 attach"
 
 export ARCH=$(uname -m)
+export TMPENV="/tmp/.$(whoami)"
 export DF=$TMPENV/tmpenv
 export PATH=$TMPENV/bin:$PATH
-export TMPENV="/tmp/.$(whoami)"
 
 [ -x $TMPENV/bin/tmux ] && tmux -2 attach > /dev/null && exit
 
