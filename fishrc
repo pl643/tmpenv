@@ -242,8 +242,8 @@ end
 
 # automatically run git remote update it's been 10 minutes since last ran
 
+set -gx time_between_update 900      # 15 minutes
 function auto_git_remote_update
-    set time_between_update 900      # 15 minutes
     set -x current_time (date +%s)
     if test -n "$git_remote_update_last_ran"
         set time_diff (math $current_time - $git_remote_update_last_ran)
