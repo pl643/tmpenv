@@ -20,6 +20,7 @@ abbr Ghf git push --force
 abbr Gi 'echo >> $DF/.gitignore'
 abbr Gl git pull
 abbr Gm git commit -m
+abbr Gr git remote update  # update remote git references
 abbr Gs git status
 abbr Gsh git show
 abbr S sudo
@@ -77,7 +78,7 @@ fish_vi_key_bindings
 set fish_greeting
 
 function fish_right_prompt -d "Write out the right prompt"
-    echo (date '+ %H:%M:%S') $OS
+    printf "%s %s %s" (auto_git_remote_update) (date '+%H:%M:%S') $OS
 end
 
 function cd
@@ -237,6 +238,24 @@ function fish_prompt --description 'Write out the prompt'
     set -l prompt_status (__fish_print_pipestatus "[" "]" "|" "$status_color" "$statusb_color" $last_pipestatus)
 
     echo -n -s (prompt_login)' ' (set_color $color_cwd) (prompt_pwd) $normal (fish_vcs_prompt) $normal " "$prompt_status $suffix " "
+end
+
+# automatically run git remote update it's been 10 minutes since last ran
+
+function auto_git_remote_update
+    set time_between_update 900      # 15 minutes
+    set -x current_time (date +%s)
+    if test -n "$git_remote_update_last_ran"
+        set time_diff (math $current_time - $git_remote_update_last_ran)
+    end
+    if test -z "$git_remote_update_last_ran"; or test $time_diff -gt $time_between_update
+        # echo DB autogit: running git remote update
+        # echo Note: auto_git_remote_update: git remote update
+        git remote update
+        set -xg git_remote_update_last_ran $current_time
+    else
+        printf "%ds" $time_diff
+    end
 end
 
 set -x LS_COLORS $LS_COLORS:'di=0;36'  # make more dir more readable
