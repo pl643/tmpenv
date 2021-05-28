@@ -250,11 +250,11 @@ function auto_git_remote_update
     end
     if test -z "$git_remote_update_last_ran"; or test $time_diff -gt $time_between_update
         # echo DB autogit: running git remote update
-        # echo Note: auto_git_remote_update: git remote update
-        git remote update
+        echo auto_git_remote_update
+        git remote update > /dev/null
         set -xg git_remote_update_last_ran $current_time
     else
-        printf "%ds" $time_diff
+        # printf "%ds" $time_diff
     end
 end
 
