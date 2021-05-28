@@ -3,18 +3,19 @@ abbr D docker
 abbr G git
 abbr GA grep git $DF/fishrc \| grep abbr
 abbr GC 'git config --global user.email "peter.wt.ly@gmail.com"; git config --global user.name "Peter Ly"'
-abbr GCdss git config --global delta.side-by-side true
-abbr GCdsn git config --global core.pager \"delta --line-numbers --dark\"
+abbr GCd 'git config --global delta.side-by-side true; git config --global core.pager "delta --line-numbers --dark"'
 abbr GH git stash
 abbr GL git log --oneline
 abbr GS git switch
 abbr Gb git branch
 abbr Gc "git commit -m ''"
+abbr Gca git commit --amend -m \"\"
 abbr Gcd 'git config --global core.pager "delta --line-numbers --dark"'
 abbr Gco git checkout
 abbr Gcp git "commit -m '' ; git push"
-abbr gd clear \; git diff
+abbr Gcu "git commit --amend -m ''; git push --force"
 abbr Gh git push
+abbr Ghf git push --force
 abbr Gi 'echo >> $DF/.gitignore'
 abbr Gl git pull
 abbr Gm git commit -m
@@ -32,8 +33,9 @@ abbr f fd
 abbr ft tokei
 abbr g git
 abbr ga git add
-abbr gco git checkout
 abbr gc git clone
+abbr gco git checkout
+abbr gd clear \; git diff
 abbr gl "git log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)%Creset' --abbrev-commit" 
 abbr gr rg --color=always
 abbr grep rg --color=always
@@ -51,7 +53,7 @@ abbr ps procs
 abbr pu sudo apt update
 abbr r rg --color=always
 abbr rg rg --color=always
-abbr s exa --color=always $argv \| column
+abbr s exa
 abbr se showenv
 abbr sf source $DF/fishrc
 abbr ss exa --color=always
@@ -66,6 +68,8 @@ abbr u cd ..
 abbr v 'run_nvim'
 abbr vr /home/ply/.local/bin/nvr  
 abbr vri pip3 install neovim-remote
+abbr tsb tmux set-option -g status-position bottom
+abbr tst tmux set-option -g status-position top
 
 fish_vi_key_bindings
 set fish_greeting
@@ -88,8 +92,6 @@ function download_configure_nightly_nvim
         cd "$TMPENV"
         curl -sL https://github.com/neovim/neovim/releases/download/nightly/nvim-linux64.tar.gz | tar xfz -
         "$TMPENV/nvim-linux64/bin/nvim" -u "$DF/vimrc" -c PlugInstall -c q -c :q
-    else
-        echo "$TMPENV/nvim-linux64/bin/nvim" exists
     end
 end
 
