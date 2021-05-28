@@ -69,7 +69,8 @@ abbr u cd ..
 abbr v 'run_nvim'
 abbr vr /home/ply/.local/bin/nvr  
 abbr vri pip3 install neovim-remote
-abbr tsb tmux set-option -g status-position bottom
+abbr tsb 'tmux set-option -g status-position bottom'
+abbr tsblrc 'echo tmux set-option -g status-position bottom >> $TMPENV/localrc.fish'
 abbr tst tmux set-option -g status-position top
 
 fish_vi_key_bindings
@@ -267,6 +268,11 @@ end
 
 if not test -d "$TMPENV/nvim-linux64"
    tmux_setup_bin
+end
+
+if test -f "$TMPENV/localrc.fish"
+   echo "Note: source $TMPENV/localrc.fish"
+   source "$TMPENV/localrc.fish"
 end
 
 # Allows to run function if function name is passed as argument
