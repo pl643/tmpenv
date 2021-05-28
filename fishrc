@@ -244,6 +244,10 @@ end
 
 set -gx time_between_update 900      # 15 minutes
 function auto_git_remote_update
+    if ! test -d .git
+        # echo Note: no .git folder in current dir
+        return
+    end
     set -x current_time (date +%s)
     if test -n "$git_remote_update_last_ran"
         set time_diff (math $current_time - $git_remote_update_last_ran)
