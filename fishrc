@@ -63,7 +63,8 @@ abbr se showenv
 abbr sf source $DF/fishrc
 abbr ss exa --color=always
 abbr t tmux
-abbr t1 tmux set -g window-style fg=colour247,bg=colour235
+abbr t0 tmux set -g window-style fg=colour247,bg=colour232
+abbr t1 tmux set -g window-style fg=colour247,bg=colour234
 abbr t2 tmux set -g window-style fg=colour247,bg=colour236
 abbr t3 tmux set -g window-style fg=colour247,bg=colour238
 abbr te cd $DF
