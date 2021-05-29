@@ -934,7 +934,7 @@ if !exists('g:loaded_plug')  " Only load if it hasn't been loaded.
         " Plug 'davidhalter/jedi'
         " Plug 'SirVer/ultisnips'
         " Plug 'scrooloose/nerdtree'
-        " Plug 'neovim/nvim-lspconfig'  " native neovim lsp
+        Plug 'neovim/nvim-lspconfig'  " native neovim lsp
         " Plug 'nvim-lua/completion-nvim'  " native neovim lsp
         Plug 'jremmen/vim-ripgrep'
         " Plug 'osyo-manga/vim-brightest'
@@ -1181,6 +1181,10 @@ hi DiffText     ctermfg=darkyellow    ctermbg=black  guifg=yellow3      guibg=bl
 hi jsonCommentError guifg=#928374 guibg=black
 hi Keyword          ctermfg=green ctermbg=black guibg=clear     guifg=green2
 hi airline_tabsel   guibg=blue guifg=white ctermfg=black ctermbg=214
+
+lua << EOF
+require'lspconfig'.pyright.setup{}
+EOF
 
 "
 " ~/df/vimrc - END
