@@ -10,5 +10,5 @@ if [ -d "$TMPENV/bin" ] ; then
 fi
 
 if [ -f "$DF/fishrc" ]; then
-	tmux -f $DF/tmux.conf -2 new fish -C "source $DF/fishrc"
+	tmux -2 attach > /dev/null || tmux -f $DF/tmux.conf -2 new fish -C "source $DF/fishrc"
 fi
