@@ -34,6 +34,7 @@ abbr a alias
 abbr apt sudo apt
 abbr b 'eval echo "Note: cd $OLDPWD; exa -lhF"; cd $OLDPWD'
 abbr c cd
+abbr ch cd /home/$USER
 abbr dt delta
 abbr es 'echo $status'
 abbr f fd
