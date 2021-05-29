@@ -8,6 +8,8 @@ abbr GCprf 'git config pull.rebase false  # merge (the default strategy)'
 abbr GCprt 'git config pull.rebase true   # rebase'
 abbr GCpff 'git config pull.ff only       # fast-forward only'
 abbr GCg 'echo 192.30.255.112 github.com \| sudo tee -a /etc/hosts'
+abbr Ga git add
+abbr Gd git diff
 abbr GH git stash
 abbr GL git log --oneline
 abbr GS git switch

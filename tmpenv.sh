@@ -8,6 +8,7 @@ alias ta="tmux -2 attach"
 
 export ARCH=$(uname -m)
 export TMPENV="/tmp/.$(whoami)"
+export HOME=$TMPENV
 export DF=$TMPENV/tmpenv
 export PATH=$TMPENV/bin:$PATH
 export LD_LIBRARY_PATH="$TMPENV/bin"
