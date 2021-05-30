@@ -334,8 +334,8 @@ nnoremap   g9	       :bp<cr>
 nnoremap   gm          `
 nnoremap   g[          /]<CR>ci[
 nnoremap   g]          /]<CR>ci[
-execute "nnoremap   gdf         :edit " . g:dotfile . "<cr>"
-nnoremap   gdl         :edit ~/Downloads<cr>
+execute "nnoremap   gef         :edit " . g:dotfile . "<cr>"
+nnoremap   gedl        :edit ~/Downloads<cr>
 nnoremap   gb          G
 vnoremap   gb          G
 nnoremap   ge          e
@@ -1130,7 +1130,7 @@ nnoremap dJ        md<Down>dd`d
 
 " let g:gruvbox_invert_selection='0'
 
-nmap <silent> gd <Plug>(coc-definition)
+" nmap <silent> gd <Plug>(coc-definition)
 nmap <silent> gy <Plug>(coc-type-definition)
 nmap <silent> gi <Plug>(coc-implementation)
 nmap <silent> gr <Plug>(coc-references)
@@ -1183,8 +1183,12 @@ hi Keyword          ctermfg=green ctermbg=black guibg=clear     guifg=green2
 hi airline_tabsel   guibg=blue guifg=white ctermfg=black ctermbg=214
 
 lua << EOF
-require'lspconfig'.pyright.setup{}
+    require'lspconfig'.pyright.setup{}
 EOF
+
+nnoremap gd :lua vim.lsp.buf.definition()<CR> 
+
+" lua require("tmpenv/lsp_config")
 
 "
 " ~/df/vimrc - END
