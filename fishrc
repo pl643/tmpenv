@@ -99,9 +99,10 @@ end
 
 function download_configure_nightly_nvim
     if not test -d "$TMPENV/nvim-linux64"
-        cd "$TMPENV"
+        builtin cd "$TMPENV"
         curl -sL https://github.com/neovim/neovim/releases/download/nightly/nvim-linux64.tar.gz | tar xfz -
-        "$TMPENV/nvim-linux64/bin/nvim" -u "$DF/vimrc" -c PlugInstall -c q -c :q
+        # "$TMPENV/nvim-linux64/bin/nvim" -u "$DF/vimrc" -c PlugInstall -c q -c :q
+        "$TMPENV/nvim-linux64/bin/nvim" -u "$DF/vimrc" +PlugInstall +UpdateRemotePlugins +qa
     end
 end
 
@@ -116,11 +117,11 @@ function setup_bin
     end
     download_configure_nightly_nvim
     if not test -d "$TMPENV/rust-bin"
-        cd $TMPENV
+        builtin cd $TMPENV
         git clone https://github.com/pl643/rust-bin
     end
     if not test -d "$TMPENV/fzf.fish"
-        cd $TMPENV
+        builtin cd $TMPENV
         git clone https://github.com/PatrickF1/fzf.fish
     end
     if not test -d "$TMPENV/node-v14.17.0-linux-x64"
