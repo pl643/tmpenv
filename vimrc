@@ -934,6 +934,8 @@ if !exists('g:loaded_plug')  " Only load if it hasn't been loaded.
         " Plug 'davidhalter/jedi'
         " Plug 'SirVer/ultisnips'
         " Plug 'scrooloose/nerdtree'
+        Plug 'https://github.com/romainl/vim-cool'  " disable search highligt 
+
         Plug 'neovim/nvim-lspconfig'  " native neovim lsp
 
         " Extensions to built-in LSP, for example, providing type inlay hints
@@ -1036,6 +1038,8 @@ if !exists('g:loaded_plug')  " Only load if it hasn't been loaded.
         "
         " Plug 'christoomey/vim-tmux-navigator'
         " Plug 'TaDaa/vimade'
+        "
+        Plug 'https://github.com/romainl/vim-cool'  " disable search highligt 
     endif
     call plug#end()
 endif
