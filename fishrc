@@ -50,7 +50,10 @@ abbr grep rg --color=always
 abbr gs clear \; git show
 abbr gsw  git switch
 abbr gsw- git switch -
-abbr h history
+abbr h cd ~  
+abbr hi history
+abbr js j -s
+abbr jh cd /home/$USER
 abbr l exa -lhF --color=always $argv \| less -FXRM
 abbr latz sudo ln -sf /usr/share/zoneinfo/America/Los_Angeles /etc/localtime
 abbr le less
@@ -128,6 +131,13 @@ function setup_bin
         builtin cd $TMPENV
         if curl -sL https://nodejs.org/dist/v14.17.0/node-v14.17.0-linux-x64.tar.gz | tar xfz -
             ln -sf $TMPENV/node-v14.17.0-linux-x64 node
+        end
+    end
+    if not test -d "$TMPENV/autojump"
+        if git clone --quiet https://github.com/wting/autojump 
+            if test -f $TMPENV/autojump/bin/autojump.fish
+                source $TMPENV/autojump/bin/autojump.fish
+            end
         end
     end
 end
@@ -314,6 +324,10 @@ end
 if test -f "$TMPENV/localrc.fish"
    echo "Note: source $TMPENV/localrc.fish"
    source "$TMPENV/localrc.fish"
+end
+
+if test -f $TMPENV/autojump/bin/autojump.fish
+    source $TMPENV/autojump/bin/autojump.fish
 end
 
 # Allows to run function if function name is passed as argument
