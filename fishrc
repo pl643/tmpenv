@@ -136,6 +136,17 @@ function setup_bin
     end
     if not test -d "$TMPENV/autojump"
         if git clone --quiet https://github.com/wting/autojump 
+            if which python
+                set python python
+                ln -sf (which python) $TMPENV/bin/python
+            else
+                if which python3
+                    set python python3
+                    ln -sf (which python3) $TMPENV/bin/python
+                end
+            end
+            builtin cd $TMPENV/autojump
+            $python $TMPENV/autojump/install.py
             if test -f $TMPENV/autojump/bin/autojump.fish
                 source $TMPENV/autojump/bin/autojump.fish
             end
