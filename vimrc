@@ -935,6 +935,13 @@ if !exists('g:loaded_plug')  " Only load if it hasn't been loaded.
         " Plug 'SirVer/ultisnips'
         " Plug 'scrooloose/nerdtree'
         Plug 'neovim/nvim-lspconfig'  " native neovim lsp
+
+        " Extensions to built-in LSP, for example, providing type inlay hints
+        Plug 'nvim-lua/lsp_extensions.nvim'
+
+        " Autocompletion framework for built-in LSP
+        Plug 'nvim-lua/completion-nvim'
+
         " Plug 'nvim-lua/completion-nvim'  " native neovim lsp
         Plug 'jremmen/vim-ripgrep'
         " Plug 'osyo-manga/vim-brightest'
@@ -1184,6 +1191,25 @@ hi airline_tabsel   guibg=blue guifg=white ctermfg=black ctermbg=214
 
 lua << EOF
     require'lspconfig'.pyright.setup{}
+    -- nvim_lsp object
+local nvim_lsp = require'lspconfig'
+
+-- function to attach completion when setting up lsp
+local on_attach = function(client)
+    require'completion'.on_attach(client)
+end
+
+-- Enable rust_analyzer
+nvim_lsp.rust_analyzer.setup({ on_attach=on_attach })
+
+-- Enable diagnostics
+vim.lsp.handlers["textDocument/publishDiagnostics"] = vim.lsp.with(
+  vim.lsp.diagnostic.on_publish_diagnostics, {
+    virtual_text = true,
+    signs = true,
+    update_in_insert = true,
+  }
+)
 EOF
 
 nnoremap gd :lua vim.lsp.buf.definition()<CR> 
