@@ -3,6 +3,7 @@
 
 export USER=$(whoami)
 export TMPENV="/tmp/.$USER"
+export HOME="/tmp/.$USER"
 export DF="$TMPENV/tmpenv"
 
 if [ -d "$TMPENV/bin" ] ; then
