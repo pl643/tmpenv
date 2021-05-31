@@ -108,6 +108,7 @@ function download_configure_nightly_nvim
         # "$TMPENV/nvim-linux64/bin/nvim" -u "$DF/vimrc" -c PlugInstall -c q -c :q
         "$TMPENV/nvim-linux64/bin/nvim" -u "$DF/vimrc" +PlugInstall +UpdateRemotePlugins +qa
     end
+    /usr/bin/python3 -m pip install pynvim
 end
 
 # Install nvim in tmux
@@ -132,6 +133,8 @@ function setup_bin
         builtin cd $TMPENV
         if curl -sL https://nodejs.org/dist/v14.17.0/node-v14.17.0-linux-x64.tar.gz | tar xfz -
             ln -sf $TMPENV/node-v14.17.0-linux-x64 node
+            set -x PATH $TMPENV/node/bin $PATH
+            npm install neovim
         end
     end
     if not test -d "$TMPENV/autojump"
