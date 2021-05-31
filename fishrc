@@ -106,9 +106,10 @@ function download_configure_nightly_nvim
         builtin cd "$TMPENV"
         curl -sL https://github.com/neovim/neovim/releases/download/nightly/nvim-linux64.tar.gz | tar xfz -
         # "$TMPENV/nvim-linux64/bin/nvim" -u "$DF/vimrc" -c PlugInstall -c q -c :q
+        #
+        /usr/bin/python3 -m pip install pynvim
         "$TMPENV/nvim-linux64/bin/nvim" -u "$DF/vimrc" +PlugInstall +UpdateRemotePlugins +qa
     end
-    /usr/bin/python3 -m pip install pynvim
 end
 
 # Install nvim in tmux
