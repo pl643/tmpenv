@@ -105,6 +105,7 @@ set encoding=UTF-8
 " Search configuration
 set ignorecase                    " ignore case when searching
 set smartcase                     " turn on smartcase
+set viminfo='100,n/home/$USER/.vim/files/info/viminfo
 " set backupdir=.backup/,~/.backup/,/tmp//
 " set directory=.swp/,~/.swp/,/tmp//
 " set undodir=.undo/,~/.undo/,/tmp//
