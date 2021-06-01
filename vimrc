@@ -1039,7 +1039,7 @@ if !exists('g:loaded_plug')  " Only load if it hasn't been loaded.
         "
         " Plug 'christoomey/vim-tmux-navigator'
         " Plug 'TaDaa/vimade'
-        "
+        Plug 'neovim/nvim-lspconfig'  " native neovim lsp
         Plug 'https://github.com/romainl/vim-cool'  " disable search highligt 
     endif
     call plug#end()
