@@ -102,6 +102,11 @@ function cd
 end
 
 function download_configure_nightly_nvim
+    # startify history file, prevent error when startup
+    if not test -f /home/$USER/.vim/files/info/viminfo
+        mkdir -p $HOME/.vim/files/info
+        touch $HOME/.vim/files/info/viminfo
+    end
     if not test -d "$TMPENV/nvim-linux64"
         builtin cd "$TMPENV"
         curl -sL https://github.com/neovim/neovim/releases/download/nightly/nvim-linux64.tar.gz | tar xfz -
