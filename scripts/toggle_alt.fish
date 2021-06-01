@@ -8,7 +8,7 @@ function toggle_alt_status
         set-option -g status-right "ALT #[bg=colour237,fg=colour239 nobold, nounderscore, noitalics]#[bg=colour239,fg=colour246] %Y-%m-%d  %H:%M #[bg=colour239,fg=colour248,nobold,noitalics,nounderscore]#[bg=colour248,fg=colour237] #h "
         tmux setenv TMUX_ALT_HJKL 1
     else 
-        tmux unbind -n M-h \; unbind -n M-j \; unbind -n M-k \; unbind -n M-l \; set -g prefix C-b \; unbind-key -n M-o \; unbind-key -n M-i \; \
+        tmux unbind -n M-h \; unbind -n M-j \; unbind -n M-k \; unbind -n M-l \; set -g prefix C-b \; unbind-key -n M-o \; unbind-key -n M-i \; unbind-key -n M-u \; \
         set-option -g status-right "#[bg=colour237,fg=colour239 nobold, nounderscore, noitalics]#[bg=colour239,fg=colour246] %Y-%m-%d  %H:%M #[bg=colour239,fg=colour248,nobold,noitalics,nounderscore]#[bg=colour248,fg=colour237] #h "
         tmux setenv TMUX_ALT_HJKL 0
     end
