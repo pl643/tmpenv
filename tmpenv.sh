@@ -25,7 +25,6 @@ cd $TMPENV
 
 if grep -q 3.14 /etc/os-release; then
 	echo Alpine Linux 3 $ARCH found
-	export OS="a3"
 	DISTRO="bin-alpine-$ARCH"
 	BINPATH=$TMPENV/$DISTRO/usr/local/bin
 	if [ ! -d $BINPATH ] ; then
@@ -43,7 +42,6 @@ fi
 
 if grep -q CentOS-7 /etc/os-release; then
 	echo Centos-7 $ARCH found
-	export OS="c7"
 	DISTRO="bin-centos7-$ARCH"
 	BINPATH=$TMPENV/$DISTRO/usr/local/bin
     if test -f /.dockerenv && ! test -f /usr/bin/git; then
@@ -64,7 +62,6 @@ fi
 
 if grep -q CentOS-8 /etc/os-release; then
 	echo Centos-8 $ARCH found
-	export OS="c8"
 	DISTRO="bin-centos8-$ARCH"
 	BINPATH=$TMPENV/$DISTRO/usr/local/bin
     if test -f /.dockerenv && ! test -f /usr/bin/git; then
@@ -85,7 +82,6 @@ fi
 
 if grep -q 16.04    /etc/os-release; then
 	echo Ubuntu 16.04 $ARCH found
-	export OS="u16"
 	BINPATH=$TMPENV/bin-ubuntu1604-$ARCH/usr/local/bin
     if test -f /.dockerenv && ! test -f /usr/bin/git; then
         apt update
@@ -106,7 +102,6 @@ fi
 
 if grep -q 18.04    /etc/os-release; then
 	echo Ubuntu 18.04 $ARCH found
-	export OS="u18"
 	BINPATH=$TMPENV/bin-ubuntu1804-$ARCH/usr/local/bin
     if test -f /.dockerenv && ! test -f /usr/bin/git; then
         apt update
@@ -127,7 +122,6 @@ fi
 
 if grep -q 20.04    /etc/os-release; then
 	echo Ubuntu 20.04 $ARCH found
-	export OS="u20"
 	BINPATH=$TMPENV/bin-ubuntu2004-$ARCH/usr/local/bin
     if test -f /.dockerenv && ! test -f /usr/bin/git; then
         apt update
