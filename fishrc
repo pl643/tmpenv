@@ -85,6 +85,7 @@ abbr u cd ..
 abbr v 'run_nvim'
 abbr vr /home/ply/.local/bin/nvr  
 abbr vri pip3 install neovim-remote
+abbr wslssh 'sudo ssh-keygen -A; sudo service ssh start; vi /etc/ssh/sshd_config +/PasswordAuthentication'
 
 fish_vi_key_bindings
 set fish_greeting
