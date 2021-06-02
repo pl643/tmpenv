@@ -4,7 +4,7 @@ abbr G git
 abbr GA grep git $DF/fishrc \| grep abbr
 abbr GC 'git config --global user.email "peter.wt.ly@gmail.com"; git config --global user.name "Peter Ly"'
 abbr GCd 'git config --global delta.side-by-side true; git config --global core.pager "delta --line-numbers --dark"'
-abbr GCg 'echo 192.30.255.112 github.com \| sudo tee -a /etc/hosts'
+abbr GCg 'echo 192.30.255.112 github.com | sudo tee -a /etc/hosts'
 abbr GCpff 'git config pull.ff only       # fast-forward only'
 abbr GCprf 'git config pull.rebase false  # merge (the default strategy)'
 abbr GCprt 'git config pull.rebase true   # rebase'
