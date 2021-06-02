@@ -97,14 +97,14 @@ function detect_os
     if grep -q CentOS-8 /etc/os-release
         export OS="c8"
     end
-    if grep -q 16.04    /etc/os-release; then
+    if grep -q 16.04    /etc/os-release
         export OS="u16"
     end
-    if grep -q 18.04    /etc/os-release; then
+    if grep -q 18.04    /etc/os-release
         export OS="u18"
     end
-    if grep -q 20.04    /etc/os-release; then
-        export OS="u20x"
+    if grep -q 20.04    /etc/os-release
+        export OS="u20"
     end
 end
 
