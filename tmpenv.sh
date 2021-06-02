@@ -65,7 +65,7 @@ if grep -q CentOS-8 /etc/os-release; then
 	DISTRO="bin-centos8-$ARCH"
 	BINPATH=$TMPENV/$DISTRO/usr/local/bin
     if test -f /.dockerenv && ! test -f /usr/bin/git; then
-        sudo yum -y install git
+        yum -y install git
     fi
 	if [ ! -d $BINPATH ] ; then
 		echo git clone https://github.com/pl643/$DISTRO
