@@ -68,6 +68,7 @@ abbr rg rg --color=always
 abbr s exa
 abbr se showenv
 abbr sf source $DF/fishrc
+abbr sp 'echo "[ -f /tmp/.$USER/tmpenv/profile ] && source /tmp/.$USER/tmpenv/profile" >> /home/$USER/.profile'
 abbr ss exa --color=always
 abbr t tmux
 abbr t0 tmux set -g window-style fg=colour247,bg=colour232
