@@ -46,6 +46,9 @@ if grep -q CentOS-7 /etc/os-release; then
 	export OS="c7"
 	DISTRO="bin-centos7-$ARCH"
 	BINPATH=$TMPENV/$DISTRO/usr/local/bin
+    if test -f /.dockerenv && ! test -f /usr/bin/git; then
+        yum -y install git
+    fi
 	if [ ! -d $BINPATH ] ; then
 		echo git clone https://github.com/pl643/$DISTRO
 		git clone https://github.com/pl643/$DISTRO
