@@ -8,7 +8,7 @@ foreach(`tmux list-windows | sort -k2 `) {
         $cwin=$1;
         if($cwin != $line) { 
             `tmux swap-window -s $cwin -t $line`;
-            print "swapping windows $cwin $line: tmux swap-window -s $cwin -t $line\n";
+            # print "swapping windows $cwin $line: tmux swap-window -s $cwin -t $line\n";
             exit 1;
         } 
     }

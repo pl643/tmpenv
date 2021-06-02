@@ -76,7 +76,7 @@ abbr t1 tmux set -g window-style fg=colour247,bg=colour234
 abbr t2 tmux set -g window-style fg=colour247,bg=colour236
 abbr t3 tmux set -g window-style fg=colour247,bg=colour238
 abbr te cd $DF
-abbr ts bash $DF/functions.bash tmux_sort_windows
+abbr ts 'fish $DF/scripts/functions.fish tmux-sort-windows'
 abbr tsb 'tmux set-option -g status-position bottom'
 abbr tsblrc 'echo tmux set-option -g status-position bottom >> $TMPENV/localrc.fish'
 abbr tst tmux set-option -g status-position top
