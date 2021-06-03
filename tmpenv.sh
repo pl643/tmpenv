@@ -3,9 +3,9 @@
 
 # usage:   bash <(curl -sL https://raw.githubusercontent.com/pl643/tmpenv/master/tmpenv.sh)
 
-function url2stdio() {
-    #which curl
-}
+#function url2stdio() {
+#    #which curl
+#}
 
 set -e
 alias ta="tmux -2 attach"
