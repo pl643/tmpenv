@@ -112,10 +112,10 @@ if grep -q 18.04    /etc/os-release; then
         apt install -y git curl
     fi
 	if [ ! -d $BINPATH ] ; then
-		echo git clone https://github.com/pl643/bin-ubuntu2004-$ARCH
-		git clone https://github.com/pl643/bin-ubuntu2004-$ARCH
-		if [ -d $TMPENV/bin-ubuntu2004-$ARCH/usr/local/bin/ ] ; then
-			ln -sf $TMPENV/bin-ubuntu2004-$ARCH/usr/local/bin $TMPENV/bin
+		echo git clone https://github.com/pl643/bin-ubuntu1804-$ARCH
+		git clone https://github.com/pl643/bin-ubuntu1804-$ARCH
+		if [ -d $TMPENV/bin-ubuntu1804-$ARCH/usr/local/bin/ ] ; then
+			ln -sf $TMPENV/bin-ubuntu1804-$ARCH/usr/local/bin $TMPENV/bin
 		fi
 	fi
 	if [ ! -d $DF ] ; then
