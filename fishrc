@@ -56,7 +56,7 @@ abbr hi history
 abbr jh cd /home/$USER
 abbr js j -s
 abbr l exa -lhF --color=always $argv \| less -FXRM
-abbr latz sudo ln -sf /usr/share/zoneinfo/America/Los_Angeles /etc/localtime
+abbr latz 'test (id -u) -eq 0; and ln -sf /usr/share/zoneinfo/America/Los_Angeles /etc/localtime; or sudo ln -sf /usr/share/zoneinfo/America/Los_Angeles /etc/localtime'
 abbr le less
 abbr ll exa -lhF --color=always $argv
 abbr pi sudo apt -y install
