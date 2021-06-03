@@ -3,6 +3,10 @@
 
 # usage:   bash <(curl -sL https://raw.githubusercontent.com/pl643/tmpenv/master/tmpenv.sh)
 
+function url2stdio() {
+    #which curl
+}
+
 set -e
 alias ta="tmux -2 attach"
 
@@ -109,9 +113,9 @@ if grep -q 18.04    /etc/os-release; then
     fi
 	if [ ! -d $BINPATH ] ; then
 		echo git clone https://github.com/pl643/bin-ubuntu2004-$ARCH
-		git clone https://github.com/pl643/bin-ubuntu1604-$ARCH
-		if [ -d $TMPENV/bin-ubuntu1604-$ARCH/usr/local/bin/ ] ; then
-			ln -sf $TMPENV/bin-ubuntu1604-$ARCH/usr/local/bin $TMPENV/bin
+		git clone https://github.com/pl643/bin-ubuntu2004-$ARCH
+		if [ -d $TMPENV/bin-ubuntu2004-$ARCH/usr/local/bin/ ] ; then
+			ln -sf $TMPENV/bin-ubuntu2004-$ARCH/usr/local/bin $TMPENV/bin
 		fi
 	fi
 	if [ ! -d $DF ] ; then
