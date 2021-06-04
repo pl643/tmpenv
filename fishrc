@@ -115,7 +115,11 @@ function detect_os
 end
 
 function fish_right_prompt -d "Write out the right prompt"
-    printf "%s %s %s" (auto_git_remote_update) (date '+%H:%M:%S') $OS
+    if auto_git_remote_update
+        printf "%s %s %s" (auto_git_remote_update) (date '+%H:%M:%S') $OS
+    else
+        printf "%s %s" (date '+%H:%M:%S') $OS
+    end
 end
 
 function cd
@@ -317,7 +321,7 @@ set -gx time_between_update 900      # 15 minutes
 function auto_git_remote_update
     if ! test -d .git
         # echo Note: no .git folder in current dir
-        return
+        return 1
     end
     set -x current_time (date +%s)
     if test -n "$git_remote_update_last_ran"
