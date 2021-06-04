@@ -32,7 +32,6 @@ abbr H cd /home/$USER
 abbr S sudo
 abbr T time
 abbr a alias
-abbr apt sudo apt
 abbr b 'eval echo "Note: cd $OLDPWD; exa -lhF"; cd $OLDPWD'
 abbr c cd
 abbr ch cd /home/$USER
@@ -59,10 +58,7 @@ abbr l exa -lhF --color=always $argv \| less -FXRM
 abbr latz 'test (id -u) -eq 0; and ln -sf /usr/share/zoneinfo/America/Los_Angeles /etc/localtime; or sudo ln -sf /usr/share/zoneinfo/America/Los_Angeles /etc/localtime'
 abbr le less
 abbr ll exa -lhF --color=always $argv
-abbr pi sudo apt -y install
-abbr pi sudo apt -y install
 abbr ps procs
-abbr pu sudo apt update
 abbr r rg --color=always
 abbr rg rg --color=always
 abbr s exa
@@ -93,18 +89,28 @@ set fish_greeting
 function detect_os
     if grep -q CentOS-7 /etc/os-release
         export OS="c7"
+        abbr pi sudo yum -y install
+        abbr pu sudo yum -y remove
     end
     if grep -q CentOS-8 /etc/os-release
         export OS="c8"
+        abbr pi sudo yum -y install
+        abbr pu sudo yum -y remove
     end
     if grep -q 16.04    /etc/os-release
         export OS="u16"
+        abbr pi sudo apt -y install
+        abbr pu sudo apt -y remove
     end
     if grep -q 18.04    /etc/os-release
         export OS="u18"
+        abbr pi sudo apt -y install
+        abbr pu sudo apt -y remove
     end
     if grep -q 20.04    /etc/os-release
         export OS="u20"
+        abbr pi sudo apt -y install
+        abbr pu sudo apt -y remove
     end
 end
 
