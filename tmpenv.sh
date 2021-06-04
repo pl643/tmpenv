@@ -13,7 +13,7 @@ function extract_url() {
         if [ ! -z $downloder ]; then
             cmdline="$download -qO- $url"
         else
-            echo ERROR: No downloader found
+            echo ERROR: curl/wget not found
             exit 1
         fi
     fi
@@ -23,7 +23,7 @@ function extract_url() {
     if echo $url | grep tgz; then
         cmdline="$cmdline | tar xfz -"
     fi
-    echo "$cmdline"
+    # echo "$cmdline"
     eval $cmdline
 }
 
@@ -148,26 +148,27 @@ fi
 
 if grep -q 20.04    /etc/os-release; then
 	echo Ubuntu 20.04 $ARCH found
-	BINPATH="$TMPENV/bin-ubuntu2004-$ARCH-master/usr/local/bin"
     if test -f /.dockerenv && ! test -f /usr/bin/git; then
         apt update
         apt install -y git curl
     fi
-	if [ ! -d $BINPATH ] ; then
-        set -x
-        extract_url https://github.com/pl643/bin-ubuntu2004-x86_64/archive/refs/heads/master.zip
-		# echo git clone https://github.com/pl643/bin-ubuntu2004-$ARCH
-		# git clone https://github.com/pl643/bin-ubuntu2004-$ARCH
-		if [ -d "$TMPENV/bin-ubuntu2004-$ARCH-master/usr/local/bin" ] ; then
+	if [ ! -d "$TMPENV/bin" ] ; then
+        if which git > /dev/null; then
+            git clone https://github.com/pl643/bin-ubuntu2004-$ARCH
+            ln -sf "$TMPENV/bin-ubuntu2004-$ARCH/usr/local/bin" $TMPENV/bin
+        else
+            extract_url https://github.com/pl643/bin-ubuntu2004-x86_64/archive/refs/heads/master.zip
 			ln -sf "$TMPENV/bin-ubuntu2004-$ARCH-master/usr/local/bin" $TMPENV/bin
             chmod +x $TMPENV/bin/*
 		fi
-        set +x
 	fi
 	if [ ! -d $DF ] ; then
-		git clone https://pl643:Kao95843@github.com/pl643/tmpenv
-        #extract_url https://github.com/pl643/tmpenv/archive/refs/heads/master.zip
-        #mv tmpenv.master tmpenv
+        if which git > /dev/null; then
+            git clone https://github.com/pl643/tmpenv
+        else
+            extract_url https://github.com/pl643/tmpenv/archive/refs/heads/master.zip
+            mv tmpenv.master tmpenv
+        fi
 	fi
 	tmux -f $DF/tmux.conf -2 new fish -C "source $DF/fishrc"
 fi
