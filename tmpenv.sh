@@ -3,10 +3,32 @@
 
 # usage:   bash <(curl -sL https://raw.githubusercontent.com/pl643/tmpenv/master/tmpenv.sh)
 
-#function url2stdio() {
-#    #which curl
-#}
+function extract_url() {
+    url="$@"
+    downloader=$(which curl)
+    if [ ! -z $downloader ]; then
+        cmdline="$downloader -sL $url"
+    else
+        downloader=(which wget)
+        if [ ! -z $downloder ]; then
+            cmdline="$download -qO- $url"
+        else
+            echo ERROR: No downloader found
+            exit 1
+        fi
+    fi
+    if echo $url | grep zip; then
+        cmdline="$cmdline | busybox unzip -q -"
+    fi
+    if echo $url | grep tgz; then
+        cmdline="$cmdline | tar xfz -"
+    fi
+    echo "$cmdline"
+    eval $cmdline
+}
 
+# extract_url
+# exit
 set -e
 alias ta="tmux -2 attach"
 
@@ -126,20 +148,26 @@ fi
 
 if grep -q 20.04    /etc/os-release; then
 	echo Ubuntu 20.04 $ARCH found
-	BINPATH=$TMPENV/bin-ubuntu2004-$ARCH/usr/local/bin
+	BINPATH="$TMPENV/bin-ubuntu2004-$ARCH-master/usr/local/bin"
     if test -f /.dockerenv && ! test -f /usr/bin/git; then
         apt update
         apt install -y git curl
     fi
 	if [ ! -d $BINPATH ] ; then
-		echo git clone https://github.com/pl643/bin-ubuntu2004-$ARCH
-		git clone https://github.com/pl643/bin-ubuntu2004-$ARCH
-		if [ -d $TMPENV/bin-ubuntu2004-$ARCH/usr/local/bin/ ] ; then
-			ln -sf $TMPENV/bin-ubuntu2004-$ARCH/usr/local/bin $TMPENV/bin
+        set -x
+        extract_url https://github.com/pl643/bin-ubuntu2004-x86_64/archive/refs/heads/master.zip
+		# echo git clone https://github.com/pl643/bin-ubuntu2004-$ARCH
+		# git clone https://github.com/pl643/bin-ubuntu2004-$ARCH
+		if [ -d "$TMPENV/bin-ubuntu2004-$ARCH-master/usr/local/bin" ] ; then
+			ln -sf "$TMPENV/bin-ubuntu2004-$ARCH-master/usr/local/bin" $TMPENV/bin
+            chmod +x $TMPENV/bin/*
 		fi
+        set +x
 	fi
 	if [ ! -d $DF ] ; then
-		git clone https://pl643:Kao95843@github.com/pl643/tmpenv
+		# git clone https://pl643:Kao95843@github.com/pl643/tmpenv
+        extract_url https://github.com/pl643/tmpenv/archive/refs/heads/master.zip
+        mv tmpenv.master tmpenv
 	fi
 	tmux -f $DF/tmux.conf -2 new fish -C "source $DF/fishrc"
 fi
