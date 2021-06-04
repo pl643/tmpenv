@@ -333,7 +333,7 @@ function auto_git_remote_update
         git remote update > /dev/null 2>&1 &
         set -xg git_remote_update_last_ran $current_time
     else
-        # printf "%ds" $time_diff
+        echo ""
     end
 end
 
