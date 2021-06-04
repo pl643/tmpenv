@@ -94,8 +94,8 @@ function detect_os
     end
     if grep -q CentOS-8 /etc/os-release
         export OS="c8"
-        abbr pi sudo yum -y install
-        abbr pu sudo yum -y remove
+        abbr pi sudo dnf -y install
+        abbr pu sudo dnf -y remove
     end
     if grep -q 16.04    /etc/os-release
         export OS="u16"
@@ -377,9 +377,7 @@ if test -f $TMPENV/autojump/bin/autojump.fish
     source $TMPENV/autojump/bin/autojump.fish
 end
 
-if test -z $OS
-    detect_os
-end
+detect_os
 
 # Allows to run function if function name is passed as argument
 if test -n "$argv"
