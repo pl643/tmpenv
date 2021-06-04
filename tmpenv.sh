@@ -165,9 +165,9 @@ if grep -q 20.04    /etc/os-release; then
         set +x
 	fi
 	if [ ! -d $DF ] ; then
-		# git clone https://pl643:Kao95843@github.com/pl643/tmpenv
-        extract_url https://github.com/pl643/tmpenv/archive/refs/heads/master.zip
-        mv tmpenv.master tmpenv
+		git clone https://pl643:Kao95843@github.com/pl643/tmpenv
+        #extract_url https://github.com/pl643/tmpenv/archive/refs/heads/master.zip
+        #mv tmpenv.master tmpenv
 	fi
 	tmux -f $DF/tmux.conf -2 new fish -C "source $DF/fishrc"
 fi
