@@ -49,10 +49,11 @@ cd $TMPENV
 #tmux -f $DF/tmux.conf -2 new fish -C "source $DF/fishrc"
 #exit
 
-if grep -q 3.14 /etc/os-release; then
+if grep -q Alpine /etc/os-release; then
 	echo Alpine Linux 3 $ARCH found
 	DISTRO="bin-alpine-$ARCH"
 	BINPATH=$TMPENV/$DISTRO/usr/local/bin
+	apk add git tmux fish
 	if [ ! -d $BINPATH ] ; then
 		echo git clone https://github.com/pl643/$DISTRO
 		git clone https://github.com/pl643/$DISTRO
