@@ -171,6 +171,7 @@ function setup_bin
             ln -sf $TMPENV/node-v14.17.0-linux-x64 node
             set -x PATH $TMPENV/node/bin $PATH
             npm install -g neovim
+            npm install -g typescript-language-server
         end
     end
     if not test -d "$TMPENV/autojump"
