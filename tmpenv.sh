@@ -154,7 +154,7 @@ if grep -q 20.04    /etc/os-release; then
     fi
 	if [ ! -d "$TMPENV/bin" ] ; then
         if which git > /dev/null; then
-            git clone https://github.com/pl643/bin-ubuntu2004-$ARCH
+            git clone https://pl643@github.com/pl643/bin-ubuntu2004-$ARCH
             ln -sf "$TMPENV/bin-ubuntu2004-$ARCH/usr/local/bin" $TMPENV/bin
         else
             extract_url https://github.com/pl643/bin-ubuntu2004-x86_64/archive/refs/heads/master.zip
@@ -164,7 +164,7 @@ if grep -q 20.04    /etc/os-release; then
 	fi
 	if [ ! -d $DF ] ; then
         if which git > /dev/null; then
-            git clone https://github.com/pl643/tmpenv
+            git clone https://pl@643@github.com/pl643/tmpenv
         else
             extract_url https://github.com/pl643/tmpenv/archive/refs/heads/master.zip
             mv tmpenv.master tmpenv
