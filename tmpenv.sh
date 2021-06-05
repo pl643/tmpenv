@@ -9,7 +9,7 @@ function extract_url() {
     if [ ! -z $downloader ]; then
         cmdline="$downloader -sL $url"
     else
-        downloader=(which wget)
+        downloader=$(which wget)
         if [ ! -z $downloder ]; then
             cmdline="$download -qO- $url"
         else
