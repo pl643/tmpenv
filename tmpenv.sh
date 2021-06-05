@@ -53,7 +53,7 @@ if grep -q Alpine /etc/os-release; then
 	echo Alpine Linux 3 $ARCH found
 	DISTRO="bin-alpine-$ARCH"
 	BINPATH=$TMPENV/$DISTRO/usr/local/bin
-	apk add git tmux fish
+	apk add git tmux fish bash neovim
 	if [ ! -d $BINPATH ] ; then
 		echo git clone https://github.com/pl643/$DISTRO
 		git clone https://github.com/pl643/$DISTRO
