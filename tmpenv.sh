@@ -1,7 +1,8 @@
 # Configures a portable tmux/fish environment in /tmp/.$USER
-#   requirement: curl 
+#   requirement: wget curl git
 
-# usage:   bash <(curl -sL https://raw.githubusercontent.com/pl643/tmpenv/master/tmpenv.sh)
+# usage:   T=/tmp/.T; wget -qO$T https://raw.githubusercontent.com/pl643/tmpenv/master/tmpenv.sh; sh $T; rm $T
+# usage:   T=/tmp/.T; curl -sLo$T https://raw.githubusercontent.com/pl643/tmpenv/master/tmpenv.sh; sh $T; rm $T
 
 extract_url() {
     url="$@"
@@ -39,7 +40,7 @@ export DF=$TMPENV/tmpenv
 export PATH=$TMPENV/bin:$PATH
 export LD_LIBRARY_PATH="$TMPENV/bin"
 
-[ -x $TMPENV/bin/tmux ] && tmux -2 attach 2>&1 /dev/null && exit
+[ -x $TMPENV/bin/tmux ] && tmux -2 attach > /dev/null && exit
 
 [ ! -d $TMPENV ] && mkdir $TMPENV
 cd $TMPENV
