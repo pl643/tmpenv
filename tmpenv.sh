@@ -39,7 +39,7 @@ export DF=$TMPENV/tmpenv
 export PATH=$TMPENV/bin:$PATH
 export LD_LIBRARY_PATH="$TMPENV/bin"
 
-[ -x $TMPENV/bin/tmux ] && tmux -2 attach > /dev/null && exit
+[ -x $TMPENV/bin/tmux ] && tmux -2 attach 2>&1 /dev/null && exit
 
 [ ! -d $TMPENV ] && mkdir $TMPENV
 cd $TMPENV
