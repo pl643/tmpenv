@@ -62,7 +62,7 @@ if grep -q Alpine /etc/os-release; then
 		fi
 	fi
 	if [ ! -d $DF ] ; then
-		git clone https://pl643:Kao95843@github.com/pl643/tmpenv
+		git clone https://pl643@github.com/pl643/tmpenv
 	fi
 	tmux -f $DF/tmux.conf -2 new fish -C "source $DF/fishrc"
 fi
@@ -82,7 +82,7 @@ if grep -q CentOS-7 /etc/os-release; then
 		fi
 	fi
 	if [ ! -d $DF ] ; then
-		git clone https://pl643:Kao95843@github.com/pl643/tmpenv
+		git clone https://pl643@github.com/pl643/tmpenv
 	fi
 	tmux -f $DF/tmux.conf -2 new fish -C "source $DF/fishrc"
 fi
@@ -102,7 +102,7 @@ if grep -q CentOS-8 /etc/os-release; then
 		fi
 	fi
 	if [ ! -d $DF ] ; then
-		git clone https://pl643:Kao95843@github.com/pl643/tmpenv
+		git clone https://pl643@github.com/pl643/tmpenv
 	fi
 	tmux -f $DF/tmux.conf -2 new fish -C "source $DF/fishrc"
 fi
@@ -122,7 +122,7 @@ if grep -q 16.04    /etc/os-release; then
 		fi
 	fi
 	if [ ! -d $DF ] ; then
-		git clone https://pl643:Kao95843@github.com/pl643/tmpenv
+		git clone https://pl643@github.com/pl643/tmpenv
 	fi
 	tmux -f $DF/tmux.conf -2 new fish -C "source $DF/fishrc"
 fi
@@ -142,7 +142,7 @@ if grep -q 18.04    /etc/os-release; then
 		fi
 	fi
 	if [ ! -d $DF ] ; then
-		git clone https://pl643:Kao95843@github.com/pl643/tmpenv
+		git clone https://pl643@github.com/pl643/tmpenv
 	fi
 	tmux -f $DF/tmux.conf -2 new fish -C "source $DF/fishrc"
 fi
@@ -165,7 +165,7 @@ if grep -q 20.04    /etc/os-release; then
 	fi
 	if [ ! -d $DF ] ; then
         if which git > /dev/null; then
-            git clone https://pl@643@github.com/pl643/tmpenv
+            git clone https://pl643@github.com/pl643/tmpenv
         else
             extract_url https://github.com/pl643/tmpenv/archive/refs/heads/master.zip
             mv tmpenv.master tmpenv
