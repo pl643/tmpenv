@@ -3,7 +3,7 @@
 
 # usage:   bash <(curl -sL https://raw.githubusercontent.com/pl643/tmpenv/master/tmpenv.sh)
 
-function extract_url() {
+extract_url() {
     url="$@"
     downloader=$(which curl)
     if [ ! -z $downloader ]; then
