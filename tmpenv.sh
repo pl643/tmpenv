@@ -14,7 +14,7 @@ extract_url() {
         if [ ! -z $downloder ]; then
             cmdline="$download -qO- $url"
         else
-            echo ERROR: curl/wget not found
+            echo ERROR: curl/wget not detected
             exit 1
         fi
     fi
@@ -40,7 +40,7 @@ export DF=$TMPENV/tmpenv
 export PATH=$TMPENV/bin:$PATH
 export LD_LIBRARY_PATH="$TMPENV/bin"
 
-[ -x $TMPENV/bin/tmux ] && tmux -2 attach > /dev/null && exit
+[ -x $TMPENV/bin/tmux ] && tmux -2 attach 2> /dev/null && exit
 
 [ ! -d $TMPENV ] && mkdir $TMPENV
 cd $TMPENV
@@ -51,7 +51,7 @@ cd $TMPENV
 #exit
 
 if grep -q Alpine /etc/os-release; then
-	echo Alpine Linux 3 $ARCH found
+	echo Alpine Linux 3 $ARCH detected
 	DISTRO="bin-alpine-$ARCH"
 	BINPATH=$TMPENV/$DISTRO/usr/local/bin
 	apk add git tmux fish bash neovim
@@ -69,7 +69,7 @@ if grep -q Alpine /etc/os-release; then
 fi
 
 if grep -q CentOS-7 /etc/os-release; then
-	echo Centos-7 $ARCH found
+	echo Centos-7 $ARCH detected
 	DISTRO="bin-centos7-$ARCH"
 	BINPATH=$TMPENV/$DISTRO/usr/local/bin
     if test -f /.dockerenv && ! test -f /usr/bin/git; then
@@ -89,7 +89,7 @@ if grep -q CentOS-7 /etc/os-release; then
 fi
 
 if grep -q CentOS-8 /etc/os-release; then
-	echo Centos-8 $ARCH found
+	echo Centos-8 $ARCH detected
 	DISTRO="bin-centos8-$ARCH"
 	BINPATH=$TMPENV/$DISTRO/usr/local/bin
     if test -f /.dockerenv && ! test -f /usr/bin/git; then
@@ -109,7 +109,7 @@ if grep -q CentOS-8 /etc/os-release; then
 fi
 
 if grep -q 16.04    /etc/os-release; then
-	echo Ubuntu 16.04 $ARCH found
+	echo Ubuntu 16.04 $ARCH detected
 	BINPATH=$TMPENV/bin-ubuntu1604-$ARCH/usr/local/bin
     if test -f /.dockerenv && ! test -f /usr/bin/git; then
         apt update
@@ -129,7 +129,7 @@ if grep -q 16.04    /etc/os-release; then
 fi
 
 if grep -q 18.04    /etc/os-release; then
-	echo Ubuntu 18.04 $ARCH found
+	echo Ubuntu 18.04 $ARCH detected
 	BINPATH=$TMPENV/bin-ubuntu1804-$ARCH/usr/local/bin
     if test -f /.dockerenv && ! test -f /usr/bin/git; then
         apt update
@@ -149,7 +149,7 @@ if grep -q 18.04    /etc/os-release; then
 fi
 
 if grep -q 20.04    /etc/os-release; then
-	echo Ubuntu 20.04 $ARCH found
+	echo Ubuntu 20.04 $ARCH detected
     if test -f /.dockerenv && ! test -f /usr/bin/git; then
         apt update
         apt install -y git curl
