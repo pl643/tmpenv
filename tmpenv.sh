@@ -1,8 +1,8 @@
 # Configures a portable tmux/fish environment in /tmp/.$USER
 #   requirement: wget curl git
 
-# usage:   T=/tmp/.T; wget -qO$T https://raw.githubusercontent.com/pl643/tmpenv/master/tmpenv.sh; sh $T; rm $T
-# usage:   T=/tmp/.T; curl -sLo$T https://raw.githubusercontent.com/pl643/tmpenv/master/tmpenv.sh; sh $T; rm $T
+# T=/tmp/.T U=https://raw.githubusercontent.com/pl643/tmpenv/master/tmpenv.sh
+# curl -sLo$T $U || wget -qO$T $U; ls -l $T; sh $T; rm $T
 
 extract_url() {
     url="$@"
