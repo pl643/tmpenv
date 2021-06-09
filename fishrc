@@ -1,4 +1,5 @@
-abbr B bash --rcfile "$DF"/bashrc -c \'\'
+abbr B  'export HOME=/home/$USER; builtin cd ~; and bash'
+abbr BR 'export HOME=/root; builtin cd ~; and bash'
 abbr D docker
 abbr G git
 abbr GA grep git $DF/fishrc \| grep abbr
