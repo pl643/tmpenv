@@ -51,17 +51,17 @@ cd $TMPENV
 #exit
 
 if grep -q Alpine /etc/os-release; then
-	echo Alpine Linux 3 $ARCH detected
-	DISTRO="bin-alpine-$ARCH"
-	BINPATH=$TMPENV/$DISTRO/usr/local/bin
+	echo Alpine Linux $ARCH detected
+	# DISTRO="bin-alpine-$ARCH"
+	# BINPATH=$TMPENV/$DISTRO/usr/local/bin
 	apk add git tmux fish bash neovim
-	if [ ! -d $BINPATH ] ; then
-		echo git clone https://github.com/pl643/$DISTRO
-		git clone https://github.com/pl643/$DISTRO
-		if [ -d $TMPENV/$DISTRO/usr/local/bin/ ] ; then
-			ln -sf $TMPENV/$DISTRO/usr/local/bin $TMPENV/bin
-		fi
-	fi
+	# if [ ! -d $BINPATH ] ; then
+	# 	echo git clone https://github.com/pl643/$DISTRO
+	# 	git clone https://github.com/pl643/$DISTRO
+	# 	if [ -d $TMPENV/$DISTRO/usr/local/bin/ ] ; then
+	# 		ln -sf $TMPENV/$DISTRO/usr/local/bin $TMPENV/bin
+	# 	fi
+	# fi
 	if [ ! -d $DF ] ; then
 		git clone https://pl643@github.com/pl643/tmpenv
 	fi
