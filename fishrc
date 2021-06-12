@@ -67,6 +67,8 @@ abbr se showenv
 abbr sf source $DF/fishrc
 abbr sp 'echo "[ -f /tmp/.$USER/tmpenv/profile ] && source /tmp/.$USER/tmpenv/profile" >> /home/$USER/.profile'
 abbr ss exa --color=always
+abbr sfc sudo ssh-copy-id -i ~/pl643id_rsa root@tc
+abbr sfm sudo sshfs -o allow_other,default_permissions,IdentityFile=$TMPENV/pl643id_rsa root@tc:/ /tmp/tc
 abbr t tmux
 abbr t0 tmux set -g window-style fg=colour247,bg=colour232
 abbr t1 tmux set -g window-style fg=colour247,bg=colour234
