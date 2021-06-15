@@ -174,3 +174,30 @@ if grep -q 20.04    /etc/os-release; then
 	fi
 	tmux -f $DF/tmux.conf -2 new fish -C "source $DF/fishrc"
 fi
+
+if grep -q buster   /etc/os-release; then
+	echo Raspbian 10 $ARCH detected
+    if test -f /.dockerenv && ! test -f /usr/bin/git; then
+        apt update
+        apt install -y git curl
+    fi
+	if [ ! -d "$TMPENV/bin" ] ; then
+        if which git > /dev/null; then
+            git clone https://pl643@github.com/pl643/bin-raspbian10-$ARCH
+            ln -sf "$TMPENV/bin-raspbian10-$ARCH/usr/local/bin" $TMPENV/bin
+        else
+            extract_url https://github.com/pl643/bin-ubuntu2004-x86_64/archive/refs/heads/master.zip
+			ln -sf "$TMPENV/bin-ubuntu2004-$ARCH-master/usr/local/bin" $TMPENV/bin
+            chmod +x $TMPENV/bin/*
+		fi
+	fi
+	if [ ! -d $DF ] ; then
+        if which git > /dev/null; then
+            git clone https://pl643@github.com/pl643/tmpenv
+        else
+            extract_url https://github.com/pl643/tmpenv/archive/refs/heads/master.zip
+            mv tmpenv.master tmpenv
+        fi
+	fi
+	tmux -f $DF/tmux.conf -2 new fish -C "source $DF/fishrc"
+fi
