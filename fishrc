@@ -31,7 +31,7 @@ abbr Gs git status
 abbr Gsh git show
 abbr H cd /home/$USER
 abbr S sudo
-abbr SF 'git pull; source $DF/fishrc; tmux source $DF/tmux.conf'
+abbr SF 'git pull; source $DF/fishrc; tmux source $DF/tmux.conf; source $DF/fishrc'
 abbr T time
 abbr a alias
 abbr b 'eval echo "Note: cd $OLDPWD; exa -lhF"; cd $OLDPWD'
