@@ -177,6 +177,7 @@ fi
 
 if grep -q buster   /etc/os-release; then
 	echo Raspbian 10 $ARCH detected
+	ARCH=armv7l
     if test -f /.dockerenv && ! test -f /usr/bin/git; then
         apt update
         apt install -y git curl
