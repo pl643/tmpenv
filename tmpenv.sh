@@ -190,6 +190,7 @@ if grep -q buster   /etc/os-release; then
             # extract_url https://github.com/pl643/bin-ubuntu2004-x86_64/archive/refs/heads/master.zip
 	    #		ln -sf "$TMPENV/bin-ubuntu2004-$ARCH-master/usr/local/bin" $TMPENV/bin
             #    chmod +x $TMPENV/bin/*
+		echo
 		fi
 	fi
 	if [ ! -d $DF ] ; then
